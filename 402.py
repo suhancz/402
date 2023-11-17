@@ -5,7 +5,6 @@ import os
 import markdown
 import re
 from http.server import SimpleHTTPRequestHandler, HTTPServer
-import logging
 import dns.reversename
 
 class EnvDefault(argparse.Action):
