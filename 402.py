@@ -2,8 +2,8 @@
 
 import argparse
 import os
-import markdown
 import re
+import markdown
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 import dns.reversename
 
