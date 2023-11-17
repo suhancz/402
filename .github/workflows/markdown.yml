@@ -1,0 +1,16 @@
+name: lint Markdown
+
+on: [push]
+
+jobs:
+  lint-changelog:
+    name: Lint changelog file
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Lint README file
+      uses: docker://avtodev/markdown-lint:v1 # fastest way
+      with:
+        args: './README.md'
