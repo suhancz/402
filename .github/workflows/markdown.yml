@@ -13,5 +13,5 @@ jobs:
     - name: Lint README file
       uses: avto-dev/markdown-lint@v1
       with:
-        config: '/.mdlrc'
+        config: './.mdlrc'
         args: './README.md'
