@@ -16,7 +16,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 import markdown
 import dns.reversename
 
-class EnvDefault(argparse.Action):
+class EnvDefault(argparse.Action): # pylint: disable=too-few-public-methods
     """_summary_
     Get arguments from environment variables
     """
