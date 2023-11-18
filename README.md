@@ -66,8 +66,8 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 
 ### &nbsp;&nbsp;-&nbsp;Telephone
 
-- `CZ`: +420.*864
-- `HU`: +36.*sha.
+- `CZ`: [+420.*864](tel:+420.*864)
+- `HU`: [+36.*sha.](tel:+36.*sha.)
 
 ### &nbsp;&nbsp;-&nbsp;Internet
 
