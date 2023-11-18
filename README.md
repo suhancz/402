@@ -49,7 +49,7 @@ SSLUseStapling on
 
 ## Input example
 
-I formatted the below Markdown input to be YAML-parsable, because why not - this, of course causes Markdown linter to fail - ask me the details on the job interview ;)
+I formatted the below Markdown input to be YAML-parsable, because why not
 
 ```markdown
 # --- # 402 - Payment required - i.e. Curriculum Vitae

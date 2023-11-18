@@ -13,4 +13,5 @@ jobs:
     - name: Lint README file
       uses: docker://avtodev/markdown-lint:v1 # fastest way
       with:
+        config: '.mdlrc'
         args: './README.md'
