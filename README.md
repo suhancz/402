@@ -1,9 +1,10 @@
 # 402
+
 Generate HTML CV (with a response code of 402 - payment required ;)) from Markdown and add client IP as a tag to my e-mail address so I now from where they really contact me without having to check my mailserver logs
 
 ## SystemD service example
 
-```
+```less
 # /etc/systemd/system/402.service
 [Unit]
 Description=402, serve my CV in Markdown
@@ -22,7 +23,7 @@ WantedBy=multi-user.target
 
 ## Apache config example
 
-```xml
+```apache
 <IfModule mod_ssl.c>
 SSLStaplingCache shmcb:/var/run/apache2/stapling_cache(128000)
 <VirtualHost *:443>
