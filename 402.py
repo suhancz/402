@@ -13,14 +13,17 @@ import markdown
 import dns.reversename
 
 class EnvDefault(argparse.Action):
+    """_summary_
+    Get arguments from environment variables
+    """    
     def __init__(self, envvar, required=True, default=None, **kwargs):
         if not default and envvar:
             if envvar in os.environ:
                 default = os.environ[envvar]
         if required and default:
             required = False
-        super(EnvDefault, self).__init__(default=default, required=required,
-                                         **kwargs) # pylint: disable=super-with-arguments
+        super(EnvDefault, self).__init__(default=default, required=required, # pylint: disable=super-with-arguments
+                                         **kwargs)
 
     def __call__(self, parser, namespace, values, option_string=None): # pylint: disable=redefined-outer-name
         setattr(namespace, self.dest, values)
@@ -41,6 +44,9 @@ parser.add_argument(
 args=parser.parse_args()
 
 class SimpleServer(SimpleHTTPRequestHandler):
+    """_summary_
+    Web server doing the heavy lifting
+    """    
     def do_GET(self):
         ip_forward = self.headers.get("X-Forwarded-For")
         if ip_forward:
@@ -67,6 +73,9 @@ class SimpleServer(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    """_summary_
+    Generate HTML CV (with a response code of 402 - payment required ;)) from Markdown and add client IP as a tag to my e-mail address so I now from where they really contact me without having to check my mailserver logs
+    """    
     webServer = HTTPServer((args.hostname, int(args.port)), SimpleServer)
     print("Server started http://{args.hostname}:{args.port}")
 try:
