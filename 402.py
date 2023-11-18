@@ -52,7 +52,7 @@ class SimpleServer(SimpleHTTPRequestHandler):
         dnsname = dns.reversename.from_address(ip)
         with open(args.cv, encoding='utf-8') as f:
             text = f.read()
-            html = markdown.markdown(re.sub('([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})', rf'\1+{dnsname}\2', text))
+            html = markdown.markdown(re.sub('(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)', rf'[\2\3](mailto:\2+{dnsname}\3)', text))
         self.extensions_map = {k: v + ';charset=UTF-8' for k, v in self.extensions_map.items()}
         self.send_response(402)
         self.send_header("Content-type", "text/html; charset=utf-8")
