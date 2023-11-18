@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   lint-changelog:
-    name: Lint changelog file
+    name: Lint README file
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
@@ -13,5 +13,5 @@ jobs:
     - name: Lint README file
       uses: docker://avtodev/markdown-lint:v1 # fastest way
       with:
-        config: './.mdlrc'
+        config: '/.mdlrc'
         args: './README.md'
