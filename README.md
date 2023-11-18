@@ -1,6 +1,6 @@
-# 402
+# 402 - Payment required
 
-Generate HTML CV (with a response code of 402 - payment required ;)) from Markdown and add client IP as a tag to my e-mail address so I now from where they really contact me without having to check my mailserver logs
+Generate HTML CV (with an HTTP response code of `402 - Payment required` ;)) from Markdown and add client IP as a tag to my e-mail address so I now from where they really contact me without having to check my mailserver logs
 
 ## SystemD service example
 
