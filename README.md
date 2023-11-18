@@ -44,13 +44,13 @@ Header always set Strict-Transport-Security "max-age=31536000"
 SSLUseStapling on
 </VirtualHost>
 </IfModule>
-```markdown
+```
 
 ## Input example
 
 I formatted the below Markdown input to be YAML-parsable, because why not - this, of course causes Markdown linter to fail - ask me the details on the job interview ;)
 
-```
+```markdown
 # --- # 402 - Payment required - i.e. Curriculum Vitae
 
 ## Personal_Information
