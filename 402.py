@@ -20,9 +20,9 @@ class EnvDefault(argparse.Action):
         if required and default:
             required = False
         super(EnvDefault, self).__init__(default=default, required=required,
-                                         **kwargs) # pylint: super-with-arguments
+                                         **kwargs) # pylint: disable=super-with-arguments
 
-    def __call__(self, parser, namespace, values, option_string=None): # pylint: redefined-outer-name
+    def __call__(self, parser, namespace, values, option_string=None): # pylint: disable=redefined-outer-name
         setattr(namespace, self.dest, values)
 
 parser=argparse.ArgumentParser()
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     webServer = HTTPServer((args.hostname, int(args.port)), SimpleServer)
     print("Server started http://{args.hostname}:{args.port}")
 try:
-    webServer.serve_forever() # pylint: used-before-assignment
+    webServer.serve_forever() # pylint: disable=used-before-assignment
 except KeyboardInterrupt:
     pass
 webServer.server_close()
