@@ -83,17 +83,17 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 #### &nbsp;&nbsp;&nbsp;-&nbsp;Red Hat Certified Specialist in Ansible Automation (EX407):
 
 - `Date`: 2017-09-12
-- `ID`: 140-113-325
+- `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
 
 #### &nbsp;&nbsp;&nbsp;-&nbsp;Red Hat Certified Engineer (EX300):
 
 - `Date`: 2014-09-19
-- `ID`: 140-113-325
+- `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
 
 #### &nbsp;&nbsp;&nbsp;-&nbsp;Red Hat Certified System Administrator (EX200):
 
 - `Date`: 2014-06-20
-- `ID`: 140-113-325
+- `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
 
 ### &nbsp;&nbsp;Schools:
 
