@@ -378,5 +378,5 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 
 ## Hobbies_and_interests
 
-* [capoeira, cycling, demoscene, geocaching, new_technology, reading, travelling]
+- [capoeira, cycling, demoscene, geocaching, new_technology, reading, travelling]
 ```
