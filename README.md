@@ -263,7 +263,7 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 
 - `Doing_good`: Working for a company doing good (such as education-related business in this case) makes the employee feel more motivated
 - `Internal_employment`: I do prefer to work as an internal employee as it is much easier to agree on budgets, timelines and priorities when all involved parties work towards the exactly same goal
-- `EAFP`: I learnt a very important work principle for work efficiency
+- `EAFP`: I learnt a very important principle for work efficiency
 
 ### &nbsp;&nbsp;-&nbsp;IBM:
 
