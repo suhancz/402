@@ -150,8 +150,8 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 
 #### &nbsp;&nbsp;&nbsp;-&nbsp;What_I_learnt:
 
-- `Goals`: Good company goals can motivate the employee a lot
 - `Modern_medicine`: I never imagined before how much Linux servers are behind the tools doctors use nowadays
+- `Yak_shaving`: Distractions are sometimes very important
 
 ### &nbsp;&nbsp;-&nbsp;Toptal:
 
@@ -263,6 +263,7 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 
 - `Doing_good`: Working for a company doing good (such as education-related business in this case) makes the employee feel more motivated
 - `Internal_employment`: I do prefer to work as an internal employee as it is much easier to agree on budgets, timelines and priorities when all involved parties work towards the exactly same goal
+- `EAFP`: I learnt a very important work principle for work efficiency
 
 ### &nbsp;&nbsp;-&nbsp;IBM:
 
