@@ -20,6 +20,28 @@ Environment=CSS=<style>li { list-style-type: "- "; }</style>
 
 [Install]
 WantedBy=multi-user.target
+
+# /etc/systemd/system/402-refresh.path
+[Unit]
+Description=Watch /etc/402/402.md for changes
+
+[Path]
+PathModified=/etc/402/402.md
+
+[Install]
+WantedBy=multi-user.target
+
+# /etc/systemd/system/402-refresh.service
+[Unit]
+Description=Restart 402
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl restart 402.service
+
+[Install]
+RequiredBy=402-refresh.path
 ```
 
 ## Apache config example
