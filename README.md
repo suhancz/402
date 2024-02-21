@@ -16,6 +16,7 @@ Environment=CV=/etc/402/402.md
 Environment=HOSTNAME=402.balla.cloud
 Environment=PORT=402
 Environment=DNS=8.8.8.8
+Environment=CSS=<style>li { list-style-type: "- "; }</style>
 
 [Install]
 WantedBy=multi-user.target
@@ -141,6 +142,7 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 - `IBM_RTC`: Maintain the out-of-support IBM Rational Team Concert plant
 - `k8s`: Deploy and maintain Kubernetes infrastructure
 - `Monitoring_upgrade`: Switch our monitoring plant from Nagios to Prometheus
+- `Consul`: Implement Hashicorp Consul across our environment to be able to get metrics from ephemeral virtual machines
 
 #### &nbsp;&nbsp;&nbsp;-&nbsp;Technologies_used:
 
