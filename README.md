@@ -166,6 +166,8 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 - `Monitoring_upgrade`: Switch our monitoring plant from Nagios to Prometheus
 - `Consul`: Implement Hashicorp Consul across our environment to be able to get metrics from ephemeral virtual machines
 - `GitLab_performance`: test and optimize GitLab's performance and rate limiting
+- `corporate_certificates`: prepare our server pool for firm-signed TLS/SSL certificates, provide tools and docs for our clients for easy migration
+- `Structurizr`: deploy Structurizr on-premises for our clients with AD integration and group restriction
 
 #### &nbsp;&nbsp;&nbsp;-&nbsp;Technologies_used:
 
