@@ -118,7 +118,7 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 - `Date`: 2014-06-20
 - `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
 
-### &nbsp;&nbsp;Schools:
+### &nbsp;&nbsp;-&nbsp;Schools:
 
 #### &nbsp;&nbsp;&nbsp;-&nbsp;Gábor Dénes Főiskola:
 
