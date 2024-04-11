@@ -172,10 +172,11 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 - `GitLab_performance`: test and optimize GitLab's performance and rate limiting
 - `corporate_certificates`: prepare our server pool for firm-signed TLS/SSL certificates, provide tools and docs for our clients for easy migration
 - `Structurizr`: deploy Structurizr on-premises for our clients with AD integration and group restriction
+- `Keycloak`: Deploy and configure Keycloak in k8s to mirror corporate SSO ro our servers
 
 #### &nbsp;&nbsp;&nbsp;-&nbsp;Technologies_used:
 
-      - [Anaconda, Ansible, CentOS, CVAT, Docker, GitLab, IBM_RTC, Jenkins, K8s, MongoDB, OpenStack, PostgreSQL, Prometheus, Python, Tanzu, Ubuntu, vSphere, Windows_server]
+      - [Anaconda, Ansible, CentOS, CVAT, Docker, GitLab, IBM_RTC, Jenkins, K8s, Keycloak, MongoDB, OpenStack, PostgreSQL, Prometheus, Python, Tanzu, Ubuntu, vSphere, Windows_server]
 
 #### &nbsp;&nbsp;&nbsp;-&nbsp;What_I_learnt:
 
