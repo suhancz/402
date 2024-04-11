@@ -142,6 +142,10 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 - `Time`: 1997-2001
 - `Location`: Budapest, HU
 
+### &nbsp;&nbsp;-&nbsp;Other:
+
+- `Driving_license_categories`: [AM,B1,B]
+
 ## Professional_Experience:
 
 ### &nbsp;&nbsp;-&nbsp;Thermo Fisher Scientific:
