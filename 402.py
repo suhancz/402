@@ -15,6 +15,7 @@ import argparse
 import os
 import re
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+
 import dns.reversename  # type: ignore
 import markdown
 
