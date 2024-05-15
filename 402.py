@@ -66,11 +66,9 @@ class SimpleServer(SimpleHTTPRequestHandler):
             if ip_forward:
                 ip = ip_forward.split(",")[0]
                 print("returning forwarded for ip address", ip)
-
             elif self.headers.get("X-Real-IP"):
                 ip = self.headers.get("X-Real-IP")
                 print ("returning REAL_IP ", ip)
-
             else:
                 ip = self.client_address[0]
                 print("returning remote address ", ip)
@@ -84,7 +82,6 @@ class SimpleServer(SimpleHTTPRequestHandler):
         self.send_header("X-Robots-Tag", "noindex")
         self.end_headers()
         self.wfile.write(bytes(html, encoding='utf8'))
-
 
 if __name__ == "__main__":
     webServer = HTTPServer((args.hostname, int(args.port)), SimpleServer)

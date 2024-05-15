@@ -429,3 +429,5 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 
 - [capoeira, cycling, demoscene, geocaching, new_technology, reading, travelling]
 ```
+
+[![Super-Linter](https://github.com/suhancz/402/actions/workflows/linter/badge.svg)](https://github.com/marketplace/actions/super-linter)
