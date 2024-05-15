@@ -5,6 +5,8 @@
 
 name: DevSkim
 
+permissions: read-all
+
 on:
   push:
     branches: [ "main" ]
