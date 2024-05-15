@@ -72,7 +72,7 @@ parser.add_argument(
     help="Specify the DNS server to look up remote addresses via (can also be specified using DNS environment variable)",
 )
 parser.add_argument(
-    "-a",
+    "-sa",
     "--subaddress",
     action=EnvDefault,
     envvar="SUBADDRESS",
