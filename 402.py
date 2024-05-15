@@ -51,7 +51,7 @@ parser.add_argument(
     help="Specify the sub-address (the part in the e-mail after the '+' sign) to use for incoming e-mails (can also be specified using SUBADDRESS environment variable)")
 parser.add_argument(
     "-s", "--style", action=EnvDefault, envvar='CSS', 
-    help="Specify the CSS including <style> and </style> tags for the output HTML", default='<style>li { list-style-type: "- "; }</style>')
+    help="Specify the CSS including the <style> or <link> tags for the output HTML", default='<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" />')
 args=parser.parse_args()
 
 class SimpleServer(SimpleHTTPRequestHandler):
