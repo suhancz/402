@@ -162,17 +162,18 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 - `certificates`: Automate the request and update of TLS/SSL certificates among several services
 - `CI/CD`: Using GitLab CI, ArgoCD, and Jenkins make sure that software changes are as smooth as possible
 - `Code_refactoring`: Unify and simlpify IaC
+- `Consul`: Implement Hashicorp Consul across our environment to be able to get metrics from ephemeral virtual machines
+- `corporate_certificates`: prepare our server pool for firm-signed TLS/SSL certificates, provide tools and docs for our clients for easy migration
 - `CVAT`: Deploy amnd maintain CVAT for image recognition of modern X-ray machines and microscopes
 - `Docker`: Set up Docker service hosting both Windows and Linux containers on Windows and Linux servers and vice versa
+- `GitLab_performance`: test and optimize GitLab's performance and rate limiting
 - `GitLab_runner`: Configure GitLab runners for the projects which need it
 - `IBM_RTC`: Maintain the out-of-support IBM Rational Team Concert plant
 - `k8s`: Deploy and maintain Kubernetes infrastructure
-- `Monitoring_upgrade`: Switch our monitoring plant from Nagios to Prometheus
-- `Consul`: Implement Hashicorp Consul across our environment to be able to get metrics from ephemeral virtual machines
-- `GitLab_performance`: test and optimize GitLab's performance and rate limiting
-- `corporate_certificates`: prepare our server pool for firm-signed TLS/SSL certificates, provide tools and docs for our clients for easy migration
-- `Structurizr`: deploy Structurizr on-premises for our clients with AD integration and group restriction
 - `Keycloak`: Deploy and configure Keycloak in k8s to mirror corporate SSO ro our servers
+- `Loki`: Deploy and configure Loki in k8s to analyze and alert on logs
+- `Monitoring_upgrade`: Switch our monitoring plant from Nagios to Prometheus
+- `Structurizr`: deploy Structurizr on-premises for our clients with AD integration and group restriction
 
 #### &nbsp;&nbsp;&nbsp;-&nbsp;Technologies_used:
 
