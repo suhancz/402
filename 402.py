@@ -30,33 +30,63 @@ class EnvDefault(argparse.Action):  # pylint: disable=too-few-public-methods
                 default = os.environ[envvar]
         if required and default:
             required = False
-        super(EnvDefault, self).__init__(default=default, required=required,
-                                         **kwargs)\
-                                            # pylint: disable=super-with-arguments
+        super(EnvDefault, self).__init__(
+            default=default, required=required, **kwargs
+        )  # pylint: disable=super-with-arguments
 
-    def __call__(self, parser, namespace, values, option_string=None):  # pylint: disable=redefined-outer-name
+    def __call__(
+        self, parser, namespace, values, option_string=None
+    ):  # pylint: disable=redefined-outer-name
         setattr(namespace, self.dest, values)
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "-c", "--cv", action=EnvDefault, envvar='CV',
-    help="Specify the CV markdown path to process (can also be specified using CV environment variable)")
+    "-c",
+    "--cv",
+    action=EnvDefault,
+    envvar="CV",
+    help="Specify the CV markdown path to process (can also be specified using CV environment variable)",
+)
 parser.add_argument(
-    "-hn", "--hostname", action=EnvDefault, envvar='HOSTNAME',
-    help="Specify the hostname to serve the page on (can also be specified using HOSTNAME environment variable)")
+    "-hn",
+    "--hostname",
+    action=EnvDefault,
+    envvar="HOSTNAME",
+    help="Specify the hostname to serve the page on (can also be specified using HOSTNAME environment variable)",
+)
 parser.add_argument(
-    "-p", "--port", action=EnvDefault, envvar='PORT',
-    help="Specify the port to serve the page on (can also be specified using PORT environment variable)")
+    "-p",
+    "--port",
+    action=EnvDefault,
+    envvar="PORT",
+    help="Specify the port to serve the page on (can also be specified using PORT environment variable)",
+)
 parser.add_argument(
-    "-d", "--dns", action=EnvDefault, envvar='DNS', required=False,
-    help="Specify the DNS server to look up remote addresses via (can also be specified using DNS environment variable)")
+    "-d",
+    "--dns",
+    action=EnvDefault,
+    envvar="DNS",
+    required=False,
+    help="Specify the DNS server to look up remote addresses via (can also be specified using DNS environment variable)",
+)
 parser.add_argument(
-    "-a", "--subaddress", action=EnvDefault, envvar='SUBADDRESS', required=False,
-    help="Specify the sub-address (the part in the e-mail after the '+' sign) to use for incoming e-mails (can also be specified using SUBADDRESS environment variable)")
+    "-a",
+    "--subaddress",
+    action=EnvDefault,
+    envvar="SUBADDRESS",
+    required=False,
+    help="Specify the sub-address (the part in the e-mail after the '+' sign) to use for incoming e-mails (can also be specified using SUBADDRESS environment variable)",
+)
 parser.add_argument(
-    "-s", "--style", action=EnvDefault, envvar='CSS', required=False,
-    help="Specify the CSS including the <style> or <link> tags for the output HTML", default='<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" /><body class="terminal">')
+    "-s",
+    "--style",
+    action=EnvDefault,
+    envvar="CSS",
+    required=False,
+    help="Specify the CSS including the <style> or <link> tags for the output HTML",
+    default='<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" /><body class="terminal">',
+)
 args = parser.parse_args()
 
 
@@ -80,17 +110,23 @@ class SimpleServer(SimpleHTTPRequestHandler):
                 ip = self.client_address[0]
                 print("returning remote address ", ip)
             subaddress = dns.reversename.from_address(ip)
-        with open(args.cv, encoding='utf-8') as f:
+        with open(args.cv, encoding="utf-8") as f:
             text = f.read()
-            html = args.style + markdown.markdown(re.sub(
-                r'(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)', rf'[\2\3](mailto:\2+{subaddress}\3)', text))
+            html = args.style + markdown.markdown(
+                re.sub(
+                    r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
+                    rf"[\2\3](mailto:\2+{subaddress}\3)",
+                    text,
+                )
+            )
         self.extensions_map = {
-            k: v + ';charset=UTF-8' for k, v in self.extensions_map.items()}
+            k: v + ";charset=UTF-8" for k, v in self.extensions_map.items()
+        }
         self.send_response(402)
         self.send_header("Content-type", "text/html; charset=utf-8")
         self.send_header("X-Robots-Tag", "noindex")
         self.end_headers()
-        self.wfile.write(bytes(html, encoding='utf8'))
+        self.wfile.write(bytes(html, encoding="utf8"))
 
 
 if __name__ == "__main__":
