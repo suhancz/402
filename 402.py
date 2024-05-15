@@ -14,10 +14,9 @@ Generate HTML CV (with a response code of 402 - payment required ;)) from \
 import argparse
 import os
 import re
-from http.server import SimpleHTTPRequestHandler, HTTPServer
-import markdown
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 import dns.reversename  # type: ignore
-# from bs4 import BeautifulSoup as Soup
+import markdown
 
 
 class EnvDefault(argparse.Action):  # pylint: disable=too-few-public-methods
