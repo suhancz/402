@@ -47,7 +47,7 @@ parser.add_argument(
     "-d", "--dns", action=EnvDefault, envvar='DNS',
     help="Specify the DNS server to look up remote addresses via (can also be specified using DNS environment variable)")
 parser.add_argument(
-    "-p", "--subaddress", action=EnvDefault, envvar='SUBADDRESS',
+    "-a", "--subaddress", action=EnvDefault, envvar='SUBADDRESS',
     help="Specify the sub-address (the part in the e-mail after the '+' sign) to use for incoming e-mails (can also be specified using SUBADDRESS environment variable)")
 parser.add_argument(
     "-s", "--style", action=EnvDefault, envvar='CSS', 
