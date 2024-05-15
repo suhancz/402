@@ -538,3 +538,7 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 
 - [capoeira, cycling, demoscene, geocaching, new_technology, reading, travelling]
 ```
+
+## References
+
+[Default stylesheet by Jonas D.](https://github.com/Gioni06/terminal.css)
