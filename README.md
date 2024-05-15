@@ -214,6 +214,8 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `Monitoring_upgrade`: Switch our monitoring plant from Nagios to Prometheus
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `NIST`: Apply NIST standards to our infrastructure
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `Structurizr`: deploy Structurizr on-premises for our clients with AD integration and group restriction
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Technologies_used:
