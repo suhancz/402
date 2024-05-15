@@ -84,85 +84,85 @@ I formatted the below Markdown input to be YAML-parsable, because why not
 - `Name`: Ákos Péter BALLA
 - `Date_of_Birth`: YYYY-MM-DD
 
-### &nbsp;&nbsp;-&nbsp;Postal_address
+### -&nbsp;Postal_address
 
-&nbsp;&nbsp;&nbsp;- `CZ`: 602 00. Brno, Ulice 123/45.
+&nbsp;- `CZ`: 602 00. Brno, Ulice 123/45.
 
-&nbsp;&nbsp;&nbsp;- `HU`: 1046. Budapest, Utcanév utca 67.
+&nbsp;- `HU`: 1046. Budapest, Utcanév utca 67.
 
-### &nbsp;&nbsp;-&nbsp;Telephone
+### -&nbsp;Telephone
 
-&nbsp;&nbsp;&nbsp;- `CZ`: [+420.*864](tel:+420.*864)
+&nbsp;- `CZ`: [+420.*864](tel:+420.*864)
 
-&nbsp;&nbsp;&nbsp;- `HU`: [+36.*sha.](tel:+36.*sha.)
+&nbsp;- `HU`: [+36.*sha.](tel:+36.*sha.)
 
-### &nbsp;&nbsp;-&nbsp;Internet:
+### -&nbsp;Internet:
 
-&nbsp;&nbsp;&nbsp;- `Email`: <402@balla.cloud>
+&nbsp;- `Email`: <402@balla.cloud>
 
-&nbsp;&nbsp;&nbsp;- `WWW`: <https://402.balla.cloud>
+&nbsp;- `WWW`: <https://402.balla.cloud>
 
-&nbsp;&nbsp;&nbsp;- `LinkedIn`: <https://www.linkedin.com/in/akosballa>
+&nbsp;- `LinkedIn`: <https://www.linkedin.com/in/akosballa>
 
-&nbsp;&nbsp;&nbsp;- `GitHub`: <https://github.com/suhancz>
+&nbsp;- `GitHub`: <https://github.com/suhancz>
 
 ## Education:
 
-### &nbsp;&nbsp;-&nbsp;Certificates:
+### -&nbsp;Certificates:
 
-#### &nbsp;&nbsp;&nbsp;-&nbsp;Red Hat Certified Specialist in Ansible Automation (EX407):
+#### &nbsp;&nbsp;-&nbsp;Red Hat Certified Specialist in Ansible Automation (EX407):
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Date`: 2017-09-12
+&nbsp;&nbsp;&nbsp;- `Date`: 2017-09-12
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
+&nbsp;&nbsp;&nbsp;- `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
 
-#### &nbsp;&nbsp;&nbsp;-&nbsp;Red Hat Certified Engineer (EX300):
+#### &nbsp;&nbsp;-&nbsp;Red Hat Certified Engineer (EX300):
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Date`: 2014-09-19
+&nbsp;&nbsp;&nbsp;- `Date`: 2014-09-19
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
+&nbsp;&nbsp;&nbsp;- `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
 
-#### &nbsp;&nbsp;&nbsp;-&nbsp;Red Hat Certified System Administrator (EX200):
+#### &nbsp;&nbsp;-&nbsp;Red Hat Certified System Administrator (EX200):
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Date`: 2014-06-20
+&nbsp;&nbsp;&nbsp;- `Date`: 2014-06-20
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
+&nbsp;&nbsp;&nbsp;- `ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
 
-### &nbsp;&nbsp;-&nbsp;Schools:
+### -&nbsp;Schools:
 
-#### &nbsp;&nbsp;&nbsp;-&nbsp;Gábor Dénes Főiskola:
+#### &nbsp;&nbsp;-&nbsp;Gábor Dénes Főiskola:
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Subject`: Information Technology
+&nbsp;&nbsp;&nbsp;- `Subject`: Information Technology
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Degree`: DNF # I realized I can learn more at work than in the college
+&nbsp;&nbsp;&nbsp;- `Degree`: DNF # I realized I can learn more at work than in the college
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Time`: 2003-2008
+&nbsp;&nbsp;&nbsp;- `Time`: 2003-2008
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Location`: Budapest, HU
+&nbsp;&nbsp;&nbsp;- `Location`: Budapest, HU
 
-#### &nbsp;&nbsp;&nbsp;-&nbsp;Móricz Zsigmond Technical School:
+#### &nbsp;&nbsp;-&nbsp;Móricz Zsigmond Technical School:
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Subject`: Computersystems-Programmer
+&nbsp;&nbsp;&nbsp;- `Subject`: Computersystems-Programmer
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Institute`: Móricz Zsigmond Technical School
+&nbsp;&nbsp;&nbsp;- `Institute`: Móricz Zsigmond Technical School
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Degree`: BSc equivalent technical diploma
+&nbsp;&nbsp;&nbsp;- `Degree`: BSc equivalent technical diploma
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Time`: 2001-2003
+&nbsp;&nbsp;&nbsp;- `Time`: 2001-2003
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Location`: Budapest, HU
+&nbsp;&nbsp;&nbsp;- `Location`: Budapest, HU
 
-#### &nbsp;&nbsp;&nbsp;-&nbsp;Móricz Zsigmond High School:
+#### &nbsp;&nbsp;-&nbsp;Móricz Zsigmond High School:
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Subject`: High School specialized on Information Technology
+&nbsp;&nbsp;&nbsp;- `Subject`: High School specialized on Information Technology
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Degree`: High School diploma specialized on Information Technology
+&nbsp;&nbsp;&nbsp;- `Degree`: High School diploma specialized on Information Technology
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Time`: 1997-2001
+&nbsp;&nbsp;&nbsp;- `Time`: 1997-2001
 
-&nbsp;&nbsp;&nbsp;&nbsp;- `Location`: Budapest, HU
+&nbsp;&nbsp;&nbsp;- `Location`: Budapest, HU
 
-### &nbsp;&nbsp;-&nbsp;Other:
+### -&nbsp;Other:
 
 &nbsp;&nbsp;&nbsp;- `Driving_license_categories`: [AM,B1,B]
 
