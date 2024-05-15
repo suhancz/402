@@ -18,7 +18,7 @@ Environment=CV=/etc/402/402.md
 Environment=HOSTNAME=402.balla.cloud
 Environment=PORT=402
 Environment=DNS=8.8.8.8
-Environment=CSS=<style>li { list-style-type: "- "; }</style>
+Environment=CSS=<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" /><body class="terminal">
 
 [Install]
 WantedBy=multi-user.target
