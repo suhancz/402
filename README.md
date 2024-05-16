@@ -3,7 +3,7 @@
 
 [![Super-Linter](https://github.com/suhancz/402/actions/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
-Generate HTML CV (with an HTTP response code of `402 - Payment required` ;)) from Markdown and add client IP as a subaddress to my email address so I now from where they really contact me without having to check my mailserver logs
+Generate HTML CV (with an HTTP response code of `402 - Payment required` ;)) from Markdown and add client IP as a [subaddress](https://en.wikipedia.org/wiki/Email_address#Sub-addressing) to my email address so I now from where they really contact me without having to check my mailserver logs
 
 SystemD service example
 -----------------------
