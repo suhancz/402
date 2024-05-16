@@ -1,10 +1,12 @@
-# 402 - Payment required
+402 - Payment required
+======================
 
 [![Super-Linter](https://github.com/suhancz/402/actions/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 Generate HTML CV (with an HTTP response code of `402 - Payment required` ;)) from Markdown and add client IP as a subaddress to my email address so I now from where they really contact me without having to check my mailserver logs
 
-## SystemD service example
+SystemD service example
+-----------------------
 
 ```less
 # /etc/systemd/system/402.service
@@ -46,7 +48,8 @@ ExecStart=/usr/bin/systemctl restart 402.service
 RequiredBy=402-refresh.path
 ```
 
-## Apache config example
+Apache config example
+---------------------
 
 ```apache
 <IfModule mod_ssl.c>
@@ -72,7 +75,8 @@ SSLUseStapling on
 </IfModule>
 ```
 
-## Input example
+Input example
+-------------
 
 I formatted the below Markdown input to be YAML-parsable, because why not (linter exceptions are added to fit the YAML scheme)
 
@@ -542,6 +546,7 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 &nbsp;&nbsp;[capoeira, cycling, demoscene, geocaching, new_technology, reading, travelling]
 ```
 
-## References
+External sources
+----------------
 
 [Default style sheet by Jonas D.](https://github.com/Gioni06/terminal.css)
