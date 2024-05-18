@@ -101,6 +101,29 @@ parser.add_argument(
 args = parser.parse_args()
 
 
+def parseAcceptLanguage(acceptLanguage):
+    """_summary_
+
+    Args:
+        acceptLanguage (string): Parse Accept-Language HTTP header
+
+    Returns:
+        list: sorted tuples of language codes and weigths
+    """
+    languages = acceptLanguage.split(",")
+    locale_q_pairs = []
+
+    for language in languages:
+        if language.split(";")[0] == language:
+            # no q => q = 1
+            locale_q_pairs.append((language.strip(), "1"))
+        else:
+            locale = language.split(";")[0].strip()
+            q = language.split(";")[1].split("=")[1]
+            locale_q_pairs.append((locale, q))
+    return sorted(locale_q_pairs, key=lambda x: x[1], reverse=True)
+
+
 class SimpleServer(BaseHTTPRequestHandler):
     """_summary_
     Web server doing the heavy lifting
@@ -127,7 +150,19 @@ class SimpleServer(BaseHTTPRequestHandler):
                 ip = self.client_address[0]
                 print("returning remote address ", ip)
             subaddress = dns.reversename.from_address(ip)
-        with open(args.cv, encoding="utf-8") as f:
+        filename = args.cv
+        for language in parseAcceptLanguage(self.headers["Accept-Language"]):
+            file_suffix = language[0]
+            cv = args.cv
+            cv_array = cv.split(".")
+            cv_array.insert(-1, file_suffix)
+            filename = ".".join(cv_array)
+            if not os.path.isfile(filename):
+                filename = args.cv
+            else:
+                print("found localized file", filename)
+                break
+        with open(filename, encoding="utf-8") as f:
             text = f.read()
             html = args.style + markdown.markdown(
                 re.sub(
