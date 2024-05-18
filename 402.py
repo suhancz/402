@@ -14,8 +14,8 @@ Generate HTML CV (with a response code of 402 - payment required ;)) from \
 import argparse
 import os
 import re
-from http.server import HTTPServer, BaseHTTPRequestHandler
-from urllib.parse import urlparse, parse_qs
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import parse_qs, urlparse
 
 import dns.reversename  # type: ignore
 import markdown
@@ -48,21 +48,24 @@ parser.add_argument(
     "--cv",
     action=EnvDefault,
     envvar="CV",
-    help="Specify the CV markdown path to process (can also be specified using CV environment variable)",
+    help="Specify the CV markdown path to process (can also be specified \
+        using CV environment variable)",
 )
 parser.add_argument(
     "-hn",
     "--hostname",
     action=EnvDefault,
     envvar="HOSTNAME",
-    help="Specify the hostname to serve the page on (can also be specified using HOSTNAME environment variable)",
+    help="Specify the hostname to serve the page on (can also be specified \
+        using HOSTNAME environment variable)",
 )
 parser.add_argument(
     "-p",
     "--port",
     action=EnvDefault,
     envvar="PORT",
-    help="Specify the port to serve the page on (can also be specified using PORT environment variable)",
+    help="Specify the port to serve the page on (can also be specified using \
+        PORT environment variable)",
 )
 parser.add_argument(
     "-d",
@@ -70,7 +73,8 @@ parser.add_argument(
     action=EnvDefault,
     envvar="DNS",
     required=False,
-    help="Specify the DNS server to look up remote addresses via (can also be specified using DNS environment variable)",
+    help="Specify the DNS server to look up remote addresses via (can also be \
+        specified using DNS environment variable)",
 )
 parser.add_argument(
     "-sa",
@@ -78,7 +82,9 @@ parser.add_argument(
     action=EnvDefault,
     envvar="SUBADDRESS",
     required=False,
-    help="Specify the sub-address (the part in the e-mail after the '+' sign) to use for incoming e-mails (can also be specified using SUBADDRESS environment variable, or passed as the subaddress HTTP parameter)",
+    help="Specify the sub-address (the part in the e-mail after the '+' sign) \
+        to use for incoming e-mails (can also be specified using SUBADDRESS \
+        environment variable, or passed as the subaddress HTTP parameter)",
 )
 parser.add_argument(
     "-s",
@@ -86,8 +92,11 @@ parser.add_argument(
     action=EnvDefault,
     envvar="CSS",
     required=False,
-    help="Specify the CSS including the <style> or <link> tags for the output HTML",
-    default='<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" /><body class="terminal">',
+    help="Specify the CSS including the <style> or <link> tags for the output \
+        HTML",
+    default='<link rel="stylesheet" \
+        href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" />\
+        <body class="terminal">',
 )
 args = parser.parse_args()
 
@@ -100,7 +109,7 @@ class SimpleServer(BaseHTTPRequestHandler):
     def do_GET(self):
         query_string = parse_qs(urlparse(self.path).query)
         if query_string:
-            subaddress = query_string['subaddress'][0]
+            subaddress = query_string["subaddress"][0]
         elif args.subaddress:
             subaddress = args.subaddress
         else:
