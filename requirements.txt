@@ -1,2 +1,4 @@
 dnspython==2.6.1
 Markdown==3.6
+markdown-it-py==2.2.0
+py3dns==3.2.1
