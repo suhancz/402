@@ -32,9 +32,9 @@ class EnvDefault(argparse.Action):  # pylint: disable=too-few-public-methods
                 default = os.environ[envvar]
         if required and default:
             required = False
-        super(EnvDefault, self).__init__(
+        super(EnvDefault, self).__init__(  # pylint: disable=super-with-arguments
             default=default, required=required, **kwargs
-        )  # pylint: disable=super-with-arguments
+        )
 
     def __call__(
         self, parser, namespace, values, option_string=None
