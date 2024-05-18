@@ -14,7 +14,8 @@ Generate HTML CV (with a response code of 402 - payment required ;)) from \
 import argparse
 import os
 import re
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import HTTPServer, BaseHTTPRequestHandler
+from urllib.parse import urlparse, parse_qs
 
 import dns.reversename  # type: ignore
 import markdown
@@ -77,7 +78,7 @@ parser.add_argument(
     action=EnvDefault,
     envvar="SUBADDRESS",
     required=False,
-    help="Specify the sub-address (the part in the e-mail after the '+' sign) to use for incoming e-mails (can also be specified using SUBADDRESS environment variable)",
+    help="Specify the sub-address (the part in the e-mail after the '+' sign) to use for incoming e-mails (can also be specified using SUBADDRESS environment variable, or passed as the subaddress HTTP parameter)",
 )
 parser.add_argument(
     "-s",
@@ -91,13 +92,16 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-class SimpleServer(SimpleHTTPRequestHandler):
+class SimpleServer(BaseHTTPRequestHandler):
     """_summary_
     Web server doing the heavy lifting
     """
 
     def do_GET(self):
-        if args.subaddress:
+        query_string = parse_qs(urlparse(self.path).query)
+        if query_string:
+            subaddress = query_string['subaddress'][0]
+        elif args.subaddress:
             subaddress = args.subaddress
         else:
             ip_forward = self.headers.get("X-Forwarded-For")
@@ -120,9 +124,6 @@ class SimpleServer(SimpleHTTPRequestHandler):
                     text,
                 )
             )
-        self.extensions_map = {
-            k: v + ";charset=UTF-8" for k, v in self.extensions_map.items()
-        }
         self.send_response(402)
         self.send_header("Content-type", "text/html; charset=utf-8")
         self.send_header("X-Robots-Tag", "noindex")
