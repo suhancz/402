@@ -107,6 +107,9 @@ class SimpleServer(BaseHTTPRequestHandler):
     """
 
     def do_GET(self):
+        """_summary_
+        respond on GET requests
+        """
         query_string = parse_qs(urlparse(self.path).query)
         if query_string:
             subaddress = query_string["subaddress"][0]
