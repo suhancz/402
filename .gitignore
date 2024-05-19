@@ -1,6 +1,9 @@
 # My real CV markdown
 402*.md
 
+# Exported PDF files
+*.pdf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

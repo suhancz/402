@@ -19,7 +19,8 @@ from urllib.parse import parse_qs, urlparse
 
 import dns.reversename  # type: ignore
 import markdown
-
+import pdfkit
+from pypdf import PdfWriter
 
 class EnvDefault(argparse.Action):  # pylint: disable=too-few-public-methods
     """_summary_
@@ -171,6 +172,24 @@ class SimpleServer(BaseHTTPRequestHandler):
                     text,
                 )
             )
+            pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
+            pdfkit.from_string(html, f"402.{subaddress}.pdf",
+                               options=pdf_options)
+            writer = PdfWriter(clone_from=f"402.{subaddress}.pdf")
+            writer.create_viewer_preferences()
+            writer.add_metadata(
+                {
+                    "/Author": "Akos Balla <402+pdf@balla.cloud>",
+                    "/Title": "402 - Payment required",
+                }
+            )
+            writer.viewer_preferences.center_window = True
+            writer.viewer_preferences.hide_toolbar = True
+            writer.viewer_preferences.hide_menubar = True
+            writer.viewer_preferences.hide_windowui = True
+            writer.viewer_preferences.display_doctitle = True
+            with open(f"402.{subaddress}.pdf", "wb") as f:
+                writer.write(f)
         self.send_response(402)
         self.send_header("Content-type", "text/html; charset=utf-8")
         self.send_header("X-Robots-Tag", "noindex")
