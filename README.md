@@ -247,7 +247,7 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Ansible, AWS, Azure, Github, Python, Ubuntu]
 
-#### &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;What_I_learnt
+#### &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;What_I_learnt:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `Freelance`: Freelance projects provide much higher income than full-time employment
 
