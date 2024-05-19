@@ -19,8 +19,9 @@ from urllib.parse import parse_qs, urlparse
 
 import dns.reversename  # type: ignore
 import markdown
-import pdfkit
-from pypdf import PdfWriter
+import pdfkit  # type: ignore
+from pypdf import PdfWriter  # type: ignore
+
 
 class EnvDefault(argparse.Action):  # pylint: disable=too-few-public-methods
     """_summary_
@@ -173,8 +174,7 @@ class SimpleServer(BaseHTTPRequestHandler):
                 )
             )
             pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
-            pdfkit.from_string(html, f"402.{subaddress}.pdf",
-                               options=pdf_options)
+            pdfkit.from_string(html, f"402.{subaddress}.pdf", options=pdf_options)
             writer = PdfWriter(clone_from=f"402.{subaddress}.pdf")
             writer.create_viewer_preferences()
             writer.add_metadata(
