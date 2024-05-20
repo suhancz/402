@@ -145,8 +145,11 @@ def generatePDF(content, pdf_file):
     }
     if os.path.isfile(pdf_file):
         os.remove(pdf_file)
-    pdfkit.from_string(args.style + "<style>* {font-size: 15px;}</style>" + content,
-                       pdf_file, options=pdf_options)
+    pdfkit.from_string(
+        args.style + "<style>* {font-size: 15px;}</style>" + content,
+        pdf_file,
+        options=pdf_options,
+    )
     writer = PdfWriter(clone_from=pdf_file)
     writer.create_viewer_preferences()
     writer.add_metadata(
@@ -218,7 +221,8 @@ class SimpleServer(BaseHTTPRequestHandler):
                     r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
                     rf"[\2\3](mailto:\2+{subaddress}\3)",
                     text,
-                ) + "</body>"
+                )
+                + "</body>"
             )
         if self.path.split("?")[0] == f"/{os.path.basename(pdf_file)}":
             generatePDF(content, pdf_file)
