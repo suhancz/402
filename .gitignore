@@ -4,6 +4,9 @@
 # Exported PDF files
 *.pdf
 
+# Downloaded fonts
+*.ttf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
