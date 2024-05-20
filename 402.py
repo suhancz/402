@@ -204,9 +204,7 @@ class SimpleServer(BaseHTTPRequestHandler):
                     text,
                 )
             )
-        p = Process(
-            target=generatepdf, args=(args.style + content, pdf_file)
-        )
+        p = Process(target=generatepdf, args=(args.style + content, pdf_file))
         p.daemon = True
         p.start()
         if self.path.split("?")[0] == "/" + pdf_file:
