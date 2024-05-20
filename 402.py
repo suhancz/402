@@ -213,8 +213,8 @@ class SimpleServer(BaseHTTPRequestHandler):
             )
             self.send_header("Content-Length", os.path.getsize(pdf_file))
             self.end_headers()
-            with open(pdf_file, "rb").read() as originalpdf:
-                self.wfile.write(bytes(originalpdf))
+            with open(pdf_file, "rb") as originalpdf:
+                self.wfile.write(bytes(originalpdf.read()))
         else:
             self.send_response(402)
             self.send_header("Content-type", "text/html; charset=utf-8")
