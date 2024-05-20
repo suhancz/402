@@ -195,6 +195,7 @@ class SimpleServer(BaseHTTPRequestHandler):
                 print("returning remote address ", ip)
             subaddress = dns.reversename.from_address(ip)
         filename = args.cv
+        language = ""
         target_languages = parseAcceptLanguage(self.headers["Accept-Language"])
         if "language" in query_string:
             target_languages.insert(0, (query_string["language"][0], 1))
@@ -219,8 +220,8 @@ class SimpleServer(BaseHTTPRequestHandler):
                     r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
                     rf"[\2\3](mailto:\2+{subaddress}\3)",
                     text,
-                )
-                + "</body>"
+                ) +
+                "</body>"
             )
         if self.path.split("?")[0] == f"/{os.path.basename(pdf_file)}":
             generatePDF(content, pdf_file)
