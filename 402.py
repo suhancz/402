@@ -127,35 +127,6 @@ def parseAcceptLanguage(acceptLanguage):
     return sorted(locale_q_pairs, key=lambda x: x[1], reverse=True)
 
 
-def generatepdf(html, pdf_file):
-    """_summary_
-    generate PDF from content
-
-    Args:
-        html (string): HTML content to convert to PDF
-        pdf_file (string): PDF filename
-    """
-    pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
-    if os.path.isfile(pdf_file):
-        os.remove(pdf_file)
-    pdfkit.from_string(html, pdf_file, options=pdf_options)
-    writer = PdfWriter(clone_from=pdf_file)
-    writer.create_viewer_preferences()
-    writer.add_metadata(
-        {
-            "/Author": "Akos Balla <402+pdf@balla.cloud>",
-            "/Title": "402 - Payment required",
-        }
-    )
-    writer.viewer_preferences.center_window = True
-    writer.viewer_preferences.hide_toolbar = True
-    writer.viewer_preferences.hide_menubar = True
-    writer.viewer_preferences.hide_windowui = True
-    writer.viewer_preferences.display_doctitle = True
-    with open(pdf_file, "wb") as f:
-        writer.write(f)
-
-
 class SimpleServer(BaseHTTPRequestHandler):
     """_summary_
     Web server doing the heavy lifting
@@ -205,6 +176,25 @@ class SimpleServer(BaseHTTPRequestHandler):
                 )
             )
         if self.path.split("?")[0] == f"/{pdf_file}":
+            pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
+            if os.path.isfile(pdf_file):
+                os.remove(pdf_file)
+            pdfkit.from_string(args.style + content, pdf_file, options=pdf_options)
+            writer = PdfWriter(clone_from=pdf_file)
+            writer.create_viewer_preferences()
+            writer.add_metadata(
+                {
+                    "/Author": "Akos Balla <402+pdf@balla.cloud>",
+                    "/Title": "402 - Payment required",
+                }
+            )
+            writer.viewer_preferences.center_window = True
+            writer.viewer_preferences.hide_toolbar = True
+            writer.viewer_preferences.hide_menubar = True
+            writer.viewer_preferences.hide_windowui = True
+            writer.viewer_preferences.display_doctitle = True
+            with open(pdf_file, "wb") as f:
+                writer.write(f)
             self.send_response(200)
             self.send_header("Content-Type", "application/pdf")
             self.send_header(
