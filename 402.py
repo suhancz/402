@@ -138,6 +138,8 @@ def generatepdf(html, subaddress, filename):
     """
     pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
     pdf_file = filename.replace(".md", f".{subaddress}.pdf")
+    if os.path.isfile(pdf_file):
+        os.remove(pdf_file)
     pdfkit.from_string(html, pdf_file, options=pdf_options)
     writer = PdfWriter(clone_from=pdf_file)
     writer.create_viewer_preferences()
