@@ -177,7 +177,8 @@ class SimpleServer(BaseHTTPRequestHandler):
         respond on GET requests
         """
         query_string = parse_qs(urlparse(self.path).query)
-        if query_string["subaddress"]:
+        print(query_string)
+        if "subaddress" in query_string:
             subaddress = query_string["subaddress"][0]
         elif args.subaddress:
             subaddress = args.subaddress
@@ -194,16 +195,12 @@ class SimpleServer(BaseHTTPRequestHandler):
                 print("returning remote address ", ip)
             subaddress = dns.reversename.from_address(ip)
         filename = args.cv
-        if query_string["language"]:
-            subaddress = query_string["language"][0]
+        target_languages = parseAcceptLanguage(self.headers["Accept-Language"])
+        if "language" in query_string:
+            target_languages.insert(0, (query_string["language"][0], 1))
         elif args.language:
-            target_language = args.language
-        else:
-            target_language = ""
-        for language in [
-            [(target_language, 0)]
-            + parseAcceptLanguage(self.headers["Accept-Language"])
-        ]:
+            target_languages.insert(0, (args.language, 1))
+        for language in target_languages:
             file_suffix = language[0]
             filename = args.cv
             cv_array = filename.split(".")
@@ -244,7 +241,7 @@ class SimpleServer(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(
                 bytes(
-                    f'{args.style}<a href="/{os.path.basename(pdf_file)}?subaddress={subaddress}">&#x1f5b6;</a>{content}',
+                    f'{args.style}<a href="/{os.path.basename(pdf_file)}?subaddress={subaddress}&language={language[0]}">&#x1f5b6;</a>{content}',
                     encoding="utf8",
                 )
             )
