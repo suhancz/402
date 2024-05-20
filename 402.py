@@ -17,10 +17,10 @@ import re
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlparse
 
-import dns.reversename  # type: ignore
-import markdown
-import pdfkit  # type: ignore
-from pypdf import PdfWriter  # type: ignore
+import dns.reversename  # type: ignore  # pylint: disable=import-error
+import markdown  # pylint: disable=import-error
+import pdfkit  # type: ignore  # pylint: disable=import-error
+from pypdf import PdfWriter  # type: ignore  # pylint: disable=import-error
 
 
 class EnvDefault(argparse.Action):  # pylint: disable=too-few-public-methods
