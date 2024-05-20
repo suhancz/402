@@ -5,6 +5,13 @@
 
 Generate HTML CV (with an HTTP response code of `402 - Payment required` ;)) from Markdown and add client IP as a [subaddress](https://en.wikipedia.org/wiki/Email_address#Sub-addressing) to my email address so I now from where they really contact me without having to check my mailserver logs.
 
+---
+**IMPORTANT**
+
+The script depends on <https://wkhtmltopdf.org> - please, install it on your server if you didn't do it so
+
+---
+
 The script parses the `Accept-Language` HTTP header and tries to repsond in the browser's preferred language. This is done by file suffixes, meaning, if one sets their CV in a default language (`402.md`), but also can have the same specified for US English (`402.en-US.md`), Czech (`402.cs.md`), and Hungarian (`402.cs.md`), just by creating the Markdown following the [language or locale code](https://simplelocalize.io/data/locales/) in the filename.
 
 The script also generates a PDF file out of the HTML content to allow providing it in its static form. The PDF is saved with the same filename as the Markdown, but with the extension `.{subaddress}.pdf` in the same directory as the script is hosted.
