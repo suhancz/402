@@ -12,7 +12,7 @@ The script also generates a PDF file out of the HTML content to allow providing 
 ---
 **IMPORTANT**
 
-The script depends on "<https://wkhtmltopdf.org>" - please, install it on your server if you didn't do it so
+The script depends on [WKHTMLtoPDF](https://wkhtmltopdf.org) - please, install it on your server if you didn't do it so
 
 ---
 
