@@ -155,6 +155,7 @@ class SimpleServer(BaseHTTPRequestHandler):
         filename = args.cv
         for language in parseAcceptLanguage(self.headers["Accept-Language"]):
             file_suffix = language[0]
+            filename = args.cv
             cv_array = filename.split(".")
             cv_array.insert(-1, file_suffix)
             filename = ".".join(cv_array)
