@@ -172,7 +172,7 @@ class SimpleServer(BaseHTTPRequestHandler):
     Web server doing the heavy lifting
     """
 
-    def do_GET(self):
+    def do_GET(self):  # pylint: disable=too-many-branches,too-many-statements
         """_summary_
         respond on GET requests
         """
@@ -201,7 +201,8 @@ class SimpleServer(BaseHTTPRequestHandler):
         else:
             target_language = ""
         for language in [
-            [(target_language, 0)] + parseAcceptLanguage(self.headers["Accept-Language"])
+            [(target_language, 0)]
+            + parseAcceptLanguage(self.headers["Accept-Language"])
         ]:
             file_suffix = language[0]
             filename = args.cv
