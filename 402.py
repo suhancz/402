@@ -15,7 +15,6 @@ import argparse
 import os
 import re
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from multiprocessing import Process
 from urllib.parse import parse_qs, urlparse
 
 import dns.reversename  # type: ignore  # pylint: disable=import-error
