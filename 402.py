@@ -14,6 +14,7 @@ Generate HTML CV (with a response code of 402 - payment required ;)) from \
 import argparse
 import os
 import re
+from multiprocessing import Process
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlparse
 
@@ -126,6 +127,35 @@ def parseAcceptLanguage(acceptLanguage):
     return sorted(locale_q_pairs, key=lambda x: x[1], reverse=True)
 
 
+def generatepdf(html, subaddress, filename):
+    """_summary_
+    generate PDF from content
+
+    Args:
+        html (string): HTML content to convert to PDF
+        subaddress (string): subaddress to generate the file name from
+        filename (string): original Markdown filename
+    """
+    pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
+    pdf_file = filename.replace(".md", f".{subaddress}.pdf")
+    pdfkit.from_string(html, pdf_file, options=pdf_options)
+    writer = PdfWriter(clone_from=pdf_file)
+    writer.create_viewer_preferences()
+    writer.add_metadata(
+        {
+            "/Author": "Akos Balla <402+pdf@balla.cloud>",
+            "/Title": "402 - Payment required",
+        }
+    )
+    writer.viewer_preferences.center_window = True
+    writer.viewer_preferences.hide_toolbar = True
+    writer.viewer_preferences.hide_menubar = True
+    writer.viewer_preferences.hide_windowui = True
+    writer.viewer_preferences.display_doctitle = True
+    with open(pdf_file, "wb") as f:
+        writer.write(f)
+
+
 class SimpleServer(BaseHTTPRequestHandler):
     """_summary_
     Web server doing the heavy lifting
@@ -173,24 +203,9 @@ class SimpleServer(BaseHTTPRequestHandler):
                     text,
                 )
             )
-            pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
-            pdf_file = filename.replace(".md", f".{subaddress}.pdf")
-            pdfkit.from_string(html, pdf_file, options=pdf_options)
-            writer = PdfWriter(clone_from=pdf_file)
-            writer.create_viewer_preferences()
-            writer.add_metadata(
-                {
-                    "/Author": "Akos Balla <402+pdf@balla.cloud>",
-                    "/Title": "402 - Payment required",
-                }
-            )
-            writer.viewer_preferences.center_window = True
-            writer.viewer_preferences.hide_toolbar = True
-            writer.viewer_preferences.hide_menubar = True
-            writer.viewer_preferences.hide_windowui = True
-            writer.viewer_preferences.display_doctitle = True
-            with open(pdf_file, "wb") as f:
-                writer.write(f)
+        p = Process(target=generatepdf, args=(html, subaddress, filename))
+        p.daemon = True
+        p.start()
         self.send_response(402)
         self.send_header("Content-type", "text/html; charset=utf-8")
         self.send_header("X-Robots-Tag", "noindex")
