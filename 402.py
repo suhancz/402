@@ -90,6 +90,13 @@ parser.add_argument(
         environment variable, or passed as the subaddress HTTP parameter)",
 )
 parser.add_argument(
+    "-l",
+    "--language",
+    required=False,
+    help="Specify the language the output should apperar in (can also be \
+        passed as the language HTTP parameter)",
+)
+parser.add_argument(
     "-s",
     "--style",
     action=EnvDefault,
@@ -168,7 +175,7 @@ class SimpleServer(BaseHTTPRequestHandler):
         respond on GET requests
         """
         query_string = parse_qs(urlparse(self.path).query)
-        if query_string:
+        if query_string["subaddress"]:
             subaddress = query_string["subaddress"][0]
         elif args.subaddress:
             subaddress = args.subaddress
@@ -185,7 +192,15 @@ class SimpleServer(BaseHTTPRequestHandler):
                 print("returning remote address ", ip)
             subaddress = dns.reversename.from_address(ip)
         filename = args.cv
-        for language in parseAcceptLanguage(self.headers["Accept-Language"]):
+        if query_string["language"]:
+            subaddress = query_string["language"][0]
+        elif args.language:
+            target_language = args.language
+        else:
+            target_language = ""
+        for language in [
+            [target_language] + parseAcceptLanguage(self.headers["Accept-Language"])
+        ]:
             file_suffix = language[0]
             filename = args.cv
             cv_array = filename.split(".")
