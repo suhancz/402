@@ -7,7 +7,7 @@ Generate HTML CV (with an HTTP response code of `402 - Payment required` ;)) fro
 
 The script parses the `Accept-Language` HTTP header and tries to repsond in the browser's preferred language. This is done by file suffixes, meaning, if one sets their CV in a default language (`402.md`), but also can have the same specified for US English (`402.en-US.md`), Czech (`402.cs.md`), and Hungarian (`402.cs.md`), just by creating the Markdown following the [language or locale code](https://simplelocalize.io/data/locales/) in the filename.
 
-The script also generates a PDF file out of the HTML content to allow providing it in its static form. The PDF is saved with the same file name as the markdown, but with the extension `.{subaddress}.pdf` in the same directory as the script is hosted.
+The script also generates a PDF file out of the HTML content to allow providing it in its static form. The PDF is saved with the same filename as the Markdown, but with the extension `.{subaddress}.pdf` in the same directory as the script is hosted.
 
 SystemD service example
 -----------------------
