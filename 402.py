@@ -204,9 +204,6 @@ class SimpleServer(BaseHTTPRequestHandler):
                     text,
                 )
             )
-        p = Process(target=generatepdf, args=(args.style + content, pdf_file))
-        p.daemon = True
-        p.start()
         if self.path.split("?")[0] == f"/{pdf_file}":
             self.send_response(200)
             self.send_header("Content-Type", "application/pdf")
@@ -229,6 +226,9 @@ class SimpleServer(BaseHTTPRequestHandler):
                     encoding="utf8",
                 )
             )
+        p = Process(target=generatepdf, args=(args.style + content, pdf_file))
+        p.daemon = True
+        p.start()
 
 
 if __name__ == "__main__":
