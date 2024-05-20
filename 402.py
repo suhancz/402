@@ -202,7 +202,7 @@ class SimpleServer(BaseHTTPRequestHandler):
                     text,
                 )
             )
-        if self.path.split("?")[0] == f"/{pdf_file}":
+        if self.path.split("?")[0] == f"/{os.path.basename(pdf_file)}":
             generatePDF(content, pdf_file)
             self.send_response(200)
             self.send_header("Content-Type", "application/pdf")
