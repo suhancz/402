@@ -225,7 +225,7 @@ class SimpleServer(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(
                 bytes(
-                    f"{args.style}<a href=/{os.path.basename(pdf_file)}?subaddress={subaddress}>&#x1f5b6;</a>{content}",
+                    f'{args.style}<a href="/{os.path.basename(pdf_file)}?subaddress={subaddress}">&#x1f5b6;</a>{content}',
                     encoding="utf8",
                 )
             )
