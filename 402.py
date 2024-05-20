@@ -214,14 +214,13 @@ class SimpleServer(BaseHTTPRequestHandler):
                 break
         pdf_file = filename.replace(".md", f".{subaddress}.pdf")
         with open(filename, encoding="utf-8") as f:
-            text = f.read()
+            text = f.read() + "</body>"
             content = markdown.markdown(
                 re.sub(
                     r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
                     rf"[\2\3](mailto:\2+{subaddress}\3)",
                     text,
                 )
-                + "</body>"
             )
         if self.path.split("?")[0] == f"/{os.path.basename(pdf_file)}":
             generatePDF(content, pdf_file)
