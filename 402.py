@@ -14,8 +14,8 @@ Generate HTML CV (with a response code of 402 - payment required ;)) from \
 import argparse
 import os
 import re
-from multiprocessing import Process
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from multiprocessing import Process
 from urllib.parse import parse_qs, urlparse
 
 import dns.reversename  # type: ignore  # pylint: disable=import-error
