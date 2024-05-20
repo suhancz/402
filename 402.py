@@ -201,7 +201,7 @@ class SimpleServer(BaseHTTPRequestHandler):
         else:
             target_language = ""
         for language in [
-            [target_language] + parseAcceptLanguage(self.headers["Accept-Language"])
+            [(target_language, 0)] + parseAcceptLanguage(self.headers["Accept-Language"])
         ]:
             file_suffix = language[0]
             filename = args.cv
