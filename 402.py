@@ -212,11 +212,12 @@ class SimpleServer(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "application/pdf")
             self.send_header(
                 "Content-Disposition",
-                'attachment; filename="{}"'.format(os.path.basename(pdf_file)),
+                f'attachment; filename="{os.path.basename(pdf_file)}"',
             )
             self.send_header("Content-Length", os.path.getsize(pdf_file))
             self.end_headers()
-            self.wfile.write(bytes(open(pdf_file, "rb").read()))
+            with open(pdf_file, "rb").read() as originalpdf:
+                self.wfile.write(bytes(originalpdf))
         else:
             self.send_response(402)
             self.send_header("Content-type", "text/html; charset=utf-8")
@@ -224,9 +225,7 @@ class SimpleServer(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(
                 bytes(
-                    args.style
-                    + f"<a href=/{pdf_file}?subaddress={subaddress}>&#x1f5b6;</a>"
-                    + content,
+                    "{args.style}<a href=/{pdf_file}?subaddress={subaddress}>&#x1f5b6;</a>{content}",
                     encoding="utf8",
                 )
             )
