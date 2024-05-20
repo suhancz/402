@@ -174,8 +174,9 @@ class SimpleServer(BaseHTTPRequestHandler):
                 )
             )
             pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
-            pdfkit.from_string(html, f"402.{subaddress}.pdf", options=pdf_options)
-            writer = PdfWriter(clone_from=f"402.{subaddress}.pdf")
+            pdf_file = filename.replace(".md", f".{subaddress}.pdf")
+            pdfkit.from_string(html, pdf_file, options=pdf_options)
+            writer = PdfWriter(clone_from=pdf_file)
             writer.create_viewer_preferences()
             writer.add_metadata(
                 {
@@ -188,7 +189,7 @@ class SimpleServer(BaseHTTPRequestHandler):
             writer.viewer_preferences.hide_menubar = True
             writer.viewer_preferences.hide_windowui = True
             writer.viewer_preferences.display_doctitle = True
-            with open(f"402.{subaddress}.pdf", "wb") as f:
+            with open(pdf_file, "wb") as f:
                 writer.write(f)
         self.send_response(402)
         self.send_header("Content-type", "text/html; charset=utf-8")
