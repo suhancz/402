@@ -220,8 +220,8 @@ class SimpleServer(BaseHTTPRequestHandler):
                     r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
                     rf"[\2\3](mailto:\2+{subaddress}\3)",
                     text,
-                ) +
-                "</body>"
+                )
+                + "</body>"
             )
         if self.path.split("?")[0] == f"/{os.path.basename(pdf_file)}":
             generatePDF(content, pdf_file)
