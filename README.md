@@ -8,13 +8,13 @@ Generate HTML CV (with an HTTP response code of `402 - Payment required` ;)) fro
 The script parses the `Accept-Language` HTTP header and tries to repsond in the browser's preferred language. This is done by file suffixes, meaning, if one sets their CV in a default language (`402.md`), but also can have the same specified for US English (`402.en-US.md`), Czech (`402.cs.md`), and Hungarian (`402.cs.md`), just by creating the Markdown following the [language or locale code](https://simplelocalize.io/data/locales/) in the filename.
 
 The script also generates a pdf file out of the HTML content to allow providing it in its static form. The PDF is saved with the same filename as the Markdown, but with the extension `.{subaddress}.pdf` in the same directory as the script is hosted.
-
 ---
 **IMPORTANT**
 
 The script depends on <https://wkhtmltopdf.org> - please, install it on your server if you didn't do it so
 
 ---
+
 
 SystemD service example
 -----------------------
@@ -35,28 +35,6 @@ Environment=CSS=<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.
 
 [Install]
 WantedBy=multi-user.target
-
-# /etc/systemd/system/402-refresh.path
-[Unit]
-Description=Watch /etc/402/402.md for changes
-
-[Path]
-PathModified=/etc/402/402.md
-
-[Install]
-WantedBy=multi-user.target
-
-# /etc/systemd/system/402-refresh.service
-[Unit]
-Description=Restart 402
-After=network.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/systemctl restart 402.service
-
-[Install]
-RequiredBy=402-refresh.path
 ```
 
 Apache config example
