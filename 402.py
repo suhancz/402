@@ -17,6 +17,7 @@ import re
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from multiprocessing import Process
 from urllib.parse import parse_qs, urlparse
+from urllib.request import urlretrieve
 
 import dns.reversename  # type: ignore  # pylint: disable=import-error
 import markdown  # pylint: disable=import-error
@@ -133,11 +134,16 @@ def generatePDF(content, pdf_file):
         content (string): HTML content
         pdf_file (string): path to the PDF file
     """
+    urlretrieve(
+        "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Terminus/TerminessNerdFont-Regular.ttf",
+        "TerminessNerdFont-Regular.ttf",
+    )
     pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
     if os.path.isfile(pdf_file):
         os.remove(pdf_file)
     pdfkit.from_string(args.style + content, pdf_file, options=pdf_options)
-    writer = PdfWriter(clone_from=pdf_file)
+    writer = PdfWriter(clone_from=pdf_file,
+                       font="TerminessNerdFont-Regular.ttf")
     writer.create_viewer_preferences()
     writer.add_metadata(
         {

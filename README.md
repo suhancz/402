@@ -538,4 +538,5 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 External sources
 ----------------
 
-[Default style sheet by Jonas D.](https://github.com/Gioni06/terminal.css)
+* [Default style sheet by Jonas D.](https://github.com/Gioni06/terminal.css)
+* [TerminessNerdFont-Regular for the PDF by Ryan L McIntyre](https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Terminus/TerminessNerdFont-Regular.ttf)
