@@ -127,13 +127,12 @@ def parseAcceptLanguage(acceptLanguage):
     return sorted(locale_q_pairs, key=lambda x: x[1], reverse=True)
 
 
-def generatepdf(html, subaddress, pdf_file):
+def generatepdf(html, pdf_file):
     """_summary_
     generate PDF from content
 
     Args:
         html (string): HTML content to convert to PDF
-        subaddress (string): subaddress to generate the file name from
         pdf_file (string): PDF filename
     """
     pdf_options = {"encoding": "UTF-8", "page-size": "A4"}
@@ -205,7 +204,9 @@ class SimpleServer(BaseHTTPRequestHandler):
                     text,
                 )
             )
-        p = Process(target=generatepdf, args=(args.style + content, subaddress, pdf_file))
+        p = Process(
+            target=generatepdf, args=(args.style + content, pdf_file)
+        )
         p.daemon = True
         p.start()
         if self.path.split("?")[0] == "/" + pdf_file:
@@ -213,18 +214,11 @@ class SimpleServer(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "application/pdf")
             self.send_header(
                 "Content-Disposition",
-                'attachment; filename="{}"'.format(
-                    os.path.basename(pdf_file)
-                ),
+                'attachment; filename="{}"'.format(os.path.basename(pdf_file)),
             )
-            self.send_header(
-                "Content-Length",
-                os.path.getsize(pdf_file)
-            )
+            self.send_header("Content-Length", os.path.getsize(pdf_file))
             self.end_headers()
-            self.wfile.write(
-                bytes(open(pdf_file, "rb").read())
-            )
+            self.wfile.write(bytes(open(pdf_file, "rb").read()))
         else:
             self.send_response(402)
             self.send_header("Content-type", "text/html; charset=utf-8")
@@ -232,7 +226,9 @@ class SimpleServer(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(
                 bytes(
-                    args.style + f"<a href=/{pdf_file}?subaddress={subaddress}>&#x1f5b6;</a>" + content,
+                    args.style
+                    + f"<a href=/{pdf_file}?subaddress={subaddress}>&#x1f5b6;</a>"
+                    + content,
                     encoding="utf8",
                 )
             )
@@ -240,7 +236,7 @@ class SimpleServer(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     webServer = HTTPServer((args.hostname, int(args.port)), SimpleServer)
-    print("Server started http://{args.hostname}:{args.port}")
+    print(f"Server started http://{args.hostname}:{args.port}")
 try:
     webServer.serve_forever()  # pylint: disable=used-before-assignment
 except KeyboardInterrupt:
