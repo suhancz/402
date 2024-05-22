@@ -113,10 +113,10 @@ parser.add_argument(
     action=EnvDefault,
     envvar="PDFCSS",
     required=False,
-    help="Specify the CSS including the <style> or <link> tags for the output \
+    help='Specify the CSS including the <style> or <link> tags for the output \
         PDF (as WKHTMLtoPDF does not support remote links, one might need it \
-        for \"local\" styling). This value overrides the default CSS, but \
-        takes its value if not set",
+        for "local" styling). This value overrides the default CSS, but \
+        takes its value if not set',
 )
 args = parser.parse_args()
 

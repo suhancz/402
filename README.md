@@ -36,8 +36,8 @@ Environment=CV=/etc/402/402.md
 Environment=HOSTNAME=402.balla.cloud
 Environment=PORT=402
 Environment=DNS=8.8.8.8
-Environment=CSS=<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" /><body class="terminal">
-Environment=PDFCSS=<meta http-equiv="Content-type" content="text/html; charset=utf-8" /><meta charset="utf-8"><style>:global {font-size: 7px !important; font-family: "monospace" !important;}* {font-size: 7px !important; font-family: "monospace" !important;}:root {--global-font-size: 7px; --global-font-family: "monospace";}</style>
+Environment='CSS=<link rel="stylesheet" href="https://unpkg.com/terminal.css" /><body class="terminal">'
+Environment='PDFCSS=<meta http-equiv="Content-type" content="text/html; charset=utf-8" /><meta charset="utf-8"><style>:global {font-size: 7px !important; line-height: 100%; font-family: "monospace" !important;}* {font-size: 7px !important; line-height: 100%; font-family: "monospace" !important;}:root {--global-font-size: 7px; --global-line-height: 100%; --global-font-family: "monospace";}</style>'
 
 [Install]
 WantedBy=multi-user.target
