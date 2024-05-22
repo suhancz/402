@@ -104,7 +104,7 @@ parser.add_argument(
     help="Specify the CSS including the <style> or <link> tags for the output \
         HTML",
     default='<link rel="stylesheet" \
-        href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" />\
+        href="https://unpkg.com/terminal.css" />\
         <body class="terminal">',
 )
 args = parser.parse_args()
@@ -142,11 +142,12 @@ def generatePDF(content, pdf_file):
     pdf_options = {
         "encoding": "UTF-8",
         "page-size": "A4",
+        "user-style-sheet": "https://unpkg.com/terminal.css",
     }
     if os.path.isfile(pdf_file):
         os.remove(pdf_file)
     pdfkit.from_string(
-        args.style + "<style>* {font-size: 7px;}</style>" + content,
+        args.style + content,
         pdf_file,
         options=pdf_options,
     )
