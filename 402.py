@@ -107,6 +107,17 @@ parser.add_argument(
         href="https://unpkg.com/terminal.css" />\
         <body class="terminal">',
 )
+parser.add_argument(
+    "-ps",
+    "--pdfstyle",
+    action=EnvDefault,
+    envvar="PDFCSS",
+    required=False,
+    help="Specify the CSS including the <style> or <link> tags for the output \
+        PDF (as WKHTMLtoPDF does not support remote links, one might need it \
+        for \"local\" styling). This value overrides the default CSS, but \
+        takes its value if not set",
+)
 args = parser.parse_args()
 
 
@@ -143,13 +154,18 @@ def generatePDF(content, pdf_file):
         "encoding": "UTF-8",
         "page-size": "A4",
         "user-style-sheet": "https://unpkg.com/terminal.css",
+        "use-xserver": None,
+        "no-stop-slow-scripts": None,
+        "disable-smart-shrinking": None,
     }
     if os.path.isfile(pdf_file):
         os.remove(pdf_file)
+    if "pdfstyle" in args and args.pdfstyle:
+        pdf_style = args.pdfstyle
+    else:
+        pdf_style = args.style
     pdfkit.from_string(
-        args.style
-        + "<style>:global {font-size: 7px !important; font-family: 'monospace' !important;}* {font-size: 7px !important; font-family: 'monospace' !important;}:root {--global-font-size: 7px; --global-font-family: 'monospace';}</style>"
-        + content,
+        pdf_style + content,
         pdf_file,
         options=pdf_options,
     )

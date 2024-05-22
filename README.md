@@ -16,6 +16,11 @@ The script depends on [WKHTMLtoPDF](https://wkhtmltopdf.org) - please, install i
 
 ---
 
+X server hack
+-------------
+
+For having all [WKHTMLtoPDF](https://wkhtmltopdf.org)'s features, one need to run it inside an X server. In my case, on AlmaLinux 8 the exact [steps provided for Amazon Linux](https://github.com/JazzCore/python-pdfkit/wiki/Using-wkhtmltopdf-without-X-server#amazon-linux-2) won't work as [WKHTMLtoPDF](https://wkhtmltopdf.org) is deployed as `/usr/local/bin/wkhtmltopdf` by the package, so I rather run the whole script in Xvfb
+
 SystemD service example
 -----------------------
 
@@ -26,12 +31,13 @@ Description=402, serve my CV in Markdown
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/402.py
+ExecStart=xvfb-run -a --server-args="-screen 0, 1024x768x24" /usr/local/bin/402.py
 Environment=CV=/etc/402/402.md
 Environment=HOSTNAME=402.balla.cloud
 Environment=PORT=402
 Environment=DNS=8.8.8.8
 Environment=CSS=<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" /><body class="terminal">
+Environment=PDFCSS=<meta http-equiv="Content-type" content="text/html; charset=utf-8" /><meta charset="utf-8"><style>:global {font-size: 7px !important; font-family: "monospace" !important;}* {font-size: 7px !important; font-family: "monospace" !important;}:root {--global-font-size: 7px; --global-font-family: "monospace";}</style>
 
 [Install]
 WantedBy=multi-user.target
@@ -549,3 +555,4 @@ External sources
 
 * [Default style sheet by Jonas D.](https://github.com/Gioni06/terminal.css)
 * [TerminessNerdFont-Regular for the PDF by Ryan L McIntyre](https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Terminus/TerminessNerdFont-Regular.ttf)
+* [X server trick taken from python-pdfkit's wiki](https://github.com/JazzCore/python-pdfkit/wiki/Using-wkhtmltopdf-without-X-server)
