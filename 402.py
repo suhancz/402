@@ -147,7 +147,7 @@ def generatePDF(content, pdf_file):
     if os.path.isfile(pdf_file):
         os.remove(pdf_file)
     pdfkit.from_string(
-        args.style + content,
+        args.style + "<style>* {font-size: 15px;}</style>" + content,
         pdf_file,
         options=pdf_options,
     )
