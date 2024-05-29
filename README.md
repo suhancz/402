@@ -425,13 +425,13 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`WebSphere_MQ`: Maintain and support our clients' WebSphere MQ systems on several platforms. Problem solving and troubleshooting issues
 
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Customers:
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Customers:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Aedificatio, Alfa_Gomma_S.p.A., Ania, Banca_Delle_Marche, Bankadati, Bit_Systems, Bolton, Cassa_Depositi, CNH, Electrolux, Fiat_Group_Automobiles_S.p.A., Fincantieri, Firema_Transporti_S.p.A., Gruppo_COIN_S.p.A., Gruppo_PAM_S.p.A., Indesit, Interbanca_S.p.A., IVECO, Mediamarket, Miriade_SRL, Montenegro_S.p.A., PUBLITALIA, Seves_S.p.A., TRENITALIA, Zambon_group_S.p.A.]
 
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Technologies_used:
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Technologies_used:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[AIX, IHS, KSH, RHEL, WebSphere, WebSphere_MQ, Windows_Server]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[AIX, IHS, KSH, RHEL, WebSphere, WebSphere_MQ, Windows_Server]
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;What_I_learnt:
 
