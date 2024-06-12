@@ -152,16 +152,6 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Location`: Budapest, HU
 
-#### &nbsp;&nbsp;-&nbsp;Móricz Zsigmond High School:
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Subject`: High School specialized on Information Technology
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Degree`: High School diploma specialized on Information Technology
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Time`: 1997-2001
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Location`: Budapest, HU
-
 ### -&nbsp;Other:
 
 &nbsp;&nbsp;-&nbsp;`Driving_license_categories`: [AM,B1,B]
