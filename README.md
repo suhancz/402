@@ -84,17 +84,9 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 -&nbsp;`Date_of_Birth`: YYYY-MM-DD
 
-### -&nbsp;Postal_address:
+-&nbsp;`Postal_address`: 1046. Budapest, Utcanév utca 67.
 
-&nbsp;&nbsp;-&nbsp;`HU`: 1046. Budapest, Utcanév utca 67.
-
-&nbsp;&nbsp;-&nbsp;`CZ`: 602 00. Brno, Ulice 123/45.
-
-### -&nbsp;Telephone:
-
-&nbsp;&nbsp;-&nbsp;`HU`: [+36.*sha.](tel:+36.*sha.)
-
-&nbsp;&nbsp;-&nbsp;`CZ`: [+420.*864](tel:+420.*864)
+-&nbsp;`Telephone`: [+36.*sha.](tel:+36.*sha.)
 
 ### -&nbsp;Internet:
 
