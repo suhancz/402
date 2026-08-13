@@ -14,19 +14,33 @@ Input Markdown format
 ---------------------
 Write a normal Markdown file using standard heading levels (# through ######)
 and standard list items (- item).  The script converts the heading/list
-hierarchy into the NBSP-indented YAML-like representation that was previously
-maintained by hand, so you no longer need to sprinkle &nbsp; throughout the
-source file.
+hierarchy into the NBSP-indented YAML-like representation automatically.
 
-Mapping rules
-~~~~~~~~~~~~~
-* A heading at level N becomes a list-item at YAML depth (N-1), i.e. the
-  ``#`` document-title stays as-is, ``##`` section keys get depth 0,
-  ``###`` sub-section keys get depth 1, and so on.
-* Plain ``- item`` lines inside a heading section are rendered one level
-  deeper than that heading's depth.
-* Blank lines and lines that are already rendered with &nbsp; (legacy files)
-  are preserved without modification.
+Indentation mapping
+~~~~~~~~~~~~~~~~~~~
+Heading level → NBSP pairs before ``-`` → list-item NBSP pairs underneath
+
+  #   (level 1)  document title, rendered verbatim (no list-item wrapper)
+  ##  (level 2)  0 NBSP pairs  → list items get 1 NBSP pair  (2 &nbsp;)
+  ### (level 3)  1 NBSP pair   → list items get 2 NBSP pairs (4 &nbsp;)
+  ####(level 4)  2 NBSP pairs  → list items get 3 NBSP pairs (6 &nbsp;)
+  …and so on.
+
+Examples (the original hand-written format from README.md)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ## Personal_Information:          →  ## -&nbsp;Personal_Information:
+  - `Name`: Ákos                    →  &nbsp;&nbsp;-&nbsp;`Name`: Ákos
+
+  ### - Internet:                   →  ### &nbsp;&nbsp;-&nbsp;Internet:
+  - `Email`: …                      →  &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Email`: …
+
+  #### - Red Hat …:                 →  #### &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Red Hat …:
+  - `Date`: 2014                    →  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Date`: 2014
+
+Backward-compatibility
+~~~~~~~~~~~~~~~~~~~~~~
+Lines that already contain ``&nbsp;`` are passed through unchanged, so
+existing hand-crafted source files keep working without modification.
 """
 
 import argparse
@@ -45,43 +59,40 @@ from pypdf import PdfWriter  # type: ignore  # pylint: disable=import-error
 # Pure-Markdown → YAML-like conversion
 # ---------------------------------------------------------------------------
 
-def _yaml_indent(depth: int) -> str:
-    """Return the NBSP-based indentation string for *depth* (0-indexed)."""
-    # depth 0  → ""           (top-level, no leading spaces)
-    # depth 1  → "&nbsp;&nbsp;"
-    # depth 2  → "&nbsp;&nbsp;&nbsp;&nbsp;"
-    # …
-    return "&nbsp;&nbsp;" * depth
+def _nbsp(pairs: int) -> str:
+    """Return *pairs* repetitions of ``&nbsp;&nbsp;`` (i.e. 2*pairs &nbsp;)."""
+    return "&nbsp;&nbsp;" * pairs
 
 
 def md_to_yaml_like(text: str) -> str:  # pylint: disable=too-many-branches
     """Convert a plain Markdown CV into the NBSP-indented YAML-like format.
 
+    Heading level N  →  heading rendered with (N-2) NBSP pairs before ``-``
+                        (level 1 / ``#`` is the document title and gets no
+                        list-item wrapping at all)
+    List items       →  indented with (current_heading_level - 1) NBSP pairs
+
     The function is idempotent: lines that already contain ``&nbsp;`` are
-    passed through unchanged so that the script can still consume legacy
-    hand-crafted source files.
+    passed through unchanged so legacy hand-crafted files still work.
 
     Args:
         text (str): Raw Markdown source.
 
     Returns:
-        str: Markdown source with headings and list-items reformatted to use
-             the project's NBSP indentation convention.
+        str: Markdown with headings and list-items reformatted to use the
+             project's NBSP-indentation convention.
     """
-    # Heading pattern: optional leading spaces, then one or more '#', then text
     heading_re = re.compile(r"^(#{1,6})\s+(.*)")
-    # List-item pattern: optional leading spaces/nbsp, then "- " and text
     list_re = re.compile(r"^\s*-\s+(.*)")
 
     out_lines: list[str] = []
-    # Track the depth of the most-recently-seen heading so that plain list
-    # items can be placed one level below it.
-    current_heading_depth = 0
+    # Level of the most-recently-seen Markdown heading (1-based, matches '#' count)
+    current_heading_level: int = 2  # default: top-level section (##)
 
     for raw_line in text.splitlines():
         line = raw_line.rstrip()
 
-        # Pass legacy lines (already contain &nbsp;) straight through
+        # Legacy lines (already NBSP-formatted) pass through unchanged
         if "&nbsp;" in line:
             out_lines.append(line)
             continue
@@ -93,35 +104,38 @@ def md_to_yaml_like(text: str) -> str:  # pylint: disable=too-many-branches
 
         heading_match = heading_re.match(line)
         if heading_match:
-            hashes, content = heading_match.group(1), heading_match.group(2)
-            level = len(hashes)           # 1..6
-            depth = level - 1             # 0..5  (h1 → depth 0 = no indent)
-            current_heading_depth = depth
+            hashes = heading_match.group(1)
+            content = heading_match.group(2)
+            level = len(hashes)  # 1 … 6
+            current_heading_level = level
 
-            indent = _yaml_indent(depth)
-
-            if depth == 0:
-                # The document title (# …) stays as a plain heading
-                out_lines.append(f"{'#' * level} {content}")
+            if level == 1:
+                # Document title: keep verbatim
+                out_lines.append(f"# {content}")
             else:
-                # Sub-headings become YAML-like list-item headings:
-                #   ### -&nbsp;Section_Key:
-                # We keep the same number of '#' so Markdown renders them as
-                # the correct heading level (which produces the right HTML
-                # element for the terminal.css styling).
-                out_lines.append(f"{'#' * level} {indent}-&nbsp;{content}")
+                # Number of NBSP pairs in front of the "-" marker:
+                #   ##   (level 2)  → 0 pairs
+                #   ###  (level 3)  → 1 pair
+                #   #### (level 4)  → 2 pairs
+                #   …
+                nbsp_pairs = level - 2
+                out_lines.append(
+                    f"{'#' * level} {_nbsp(nbsp_pairs)}-&nbsp;{content}"
+                )
             continue
 
         list_match = list_re.match(line)
         if list_match:
             content = list_match.group(1)
-            # List items sit one level below their parent heading
-            depth = current_heading_depth + 1
-            indent = _yaml_indent(depth)
-            out_lines.append(f"{indent}-&nbsp;{content}")
+            # List items sit one indent level below their parent heading:
+            #   under ##   (level 2)  → 1 pair  (2 &nbsp;)
+            #   under ###  (level 3)  → 2 pairs (4 &nbsp;)
+            #   under #### (level 4)  → 3 pairs (6 &nbsp;)
+            nbsp_pairs = current_heading_level - 1
+            out_lines.append(f"{_nbsp(nbsp_pairs)}-&nbsp;{content}")
             continue
 
-        # Everything else (paragraphs, fenced code blocks, etc.) passes through
+        # Everything else (paragraphs, code fences, raw HTML …) passes through
         out_lines.append(line)
 
     return "\n".join(out_lines)
@@ -349,7 +363,7 @@ class SimpleServer(BaseHTTPRequestHandler):
                 break
         pdf_file = filename.replace(".md", f".{subaddress}.pdf")
         with open(filename, encoding="utf-8") as f:
-            # Convert pure Markdown to the NBSP-indented YAML-like format,
+            # Convert pure Markdown → NBSP-indented YAML-like format,
             # then substitute the email sub-address, then render to HTML.
             raw_text = f.read() + "</body>"
             yaml_like_text = md_to_yaml_like(raw_text)
