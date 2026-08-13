@@ -144,6 +144,24 @@ def parseAcceptLanguage(acceptLanguage):
     return sorted(locale_q_pairs, key=lambda x: x[1], reverse=True)
 
 
+def addNewTabToLinks(html):
+    """_summary_
+    Add target="_blank" and rel="noopener noreferrer" to all <a> tags
+    so that links open in new tabs.
+
+    Args:
+        html (string): HTML content
+
+    Returns:
+        string: HTML content with all links set to open in new tabs
+    """
+    return re.sub(
+        r'<a\s',
+        '<a target="_blank" rel="noopener noreferrer" ',
+        html,
+    )
+
+
 def generatePDF(content, pdf_file):
     """_summary_
     Args:
@@ -234,11 +252,13 @@ class SimpleServer(BaseHTTPRequestHandler):
         pdf_file = filename.replace(".md", f".{subaddress}.pdf")
         with open(filename, encoding="utf-8") as f:
             text = f.read() + "</body>"
-            content = markdown.markdown(
-                re.sub(
-                    r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
-                    rf"[\2\3](mailto:\2+{subaddress}\3)",
-                    text,
+            content = addNewTabToLinks(
+                markdown.markdown(
+                    re.sub(
+                        r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
+                        rf"[\2\3](mailto:\2+{subaddress}\3)",
+                        text,
+                    )
                 )
             )
         if self.path.split("?")[0] == f"/{os.path.basename(pdf_file)}":
