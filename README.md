@@ -86,7 +86,7 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 -&nbsp;`Internet`:
 
-&nbsp;&nbsp;-&nbsp;`Email`: <402@balla.cloud>
+&nbsp;&nbsp;-&nbsp;`Email`: <noreply@balla.cloud>
 
 &nbsp;&nbsp;-&nbsp;`WWW`: <https://402.balla.cloud>
 
