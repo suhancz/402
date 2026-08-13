@@ -98,56 +98,6 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;-&nbsp;`GitHub`: <https://github.com/suhancz>
 
-## Education:
-
-### -&nbsp;Certificates:
-
-#### &nbsp;&nbsp;-&nbsp;Red Hat Certified Specialist in Ansible Automation (EX407):
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Date`: 2017-09-12
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
-
-#### &nbsp;&nbsp;-&nbsp;Red Hat Certified Engineer (EX300):
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Date`: 2014-09-19
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
-
-#### &nbsp;&nbsp;-&nbsp;Red Hat Certified System Administrator (EX200):
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Date`: 2014-06-20
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
-
-### -&nbsp;Schools:
-
-#### &nbsp;&nbsp;-&nbsp;Gábor Dénes Főiskola:
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Subject`: Information Technology
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Degree`: DNF # I realized I can learn more at work than in the college
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Time`: 2003-2008
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Location`: Budapest, HU
-
-#### &nbsp;&nbsp;-&nbsp;Móricz Zsigmond Technical School:
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Subject`: Computersystems-Programmer
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Institute`: Móricz Zsigmond Technical School
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Degree`: BSc equivalent technical diploma
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Time`: 2001-2003
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Location`: Budapest, HU
-
-### -&nbsp;Other:
-
-&nbsp;&nbsp;-&nbsp;`Driving_license_categories`: [AM,B1,B]
-
 ## Professional_Experience:
 
 ### &nbsp;&nbsp;-&nbsp;Thermo Fisher Scientific:
@@ -171,6 +121,8 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`CI/CD`: Using GitLab CI, ArgoCD, and Jenkins make sure that software changes are as smooth as possible
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Code_refactoring`: Unify and simlpify IaC
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Code_signing`: Delpoy a Linux+Windows k8s cluster so signing our developers' code can happen automagically
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Consul`: Implement Hashicorp Consul across our environment to be able to get metrics from ephemeral virtual machines
 
@@ -204,6 +156,8 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Anaconda, Ansible, CentOS, CVAT, Docker, GitLab, IBM_RTC, Jenkins, K8s, Keycloak, MongoDB, OpenStack, PostgreSQL, Prometheus, Python, Tanzu, Ubuntu, vSphere, Windows_server]
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;What_I_learnt:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`10_layers_of_OSI`: Ian Farquhar of RSA proposed something useful                                 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Modern_medicine`: I never imagined before how much Linux servers are behind the tools doctors use nowadays
 
@@ -502,6 +456,56 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Automation`: Automated workflow saves plenty of time for the employee
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Small_companies`: Small, local companies are friendly environments to work at
+
+## Education:
+
+### -&nbsp;Certificates:
+
+#### &nbsp;&nbsp;-&nbsp;Red Hat Certified Specialist in Ansible Automation (EX407):
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Date`: 2017-09-12
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
+
+#### &nbsp;&nbsp;-&nbsp;Red Hat Certified Engineer (EX300):
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Date`: 2014-09-19
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
+
+#### &nbsp;&nbsp;-&nbsp;Red Hat Certified System Administrator (EX200):
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Date`: 2014-06-20
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`ID`: [140-113-325](https://rhtapps.redhat.com/verify?certId=140-113-325)
+
+### -&nbsp;Schools:
+
+#### &nbsp;&nbsp;-&nbsp;Gábor Dénes Főiskola:
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Subject`: Information Technology
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Degree`: DNF # I realized I can learn more at work than in the college
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Time`: 2003-2008
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Location`: Budapest, HU
+
+#### &nbsp;&nbsp;-&nbsp;Móricz Zsigmond Technical School:
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Subject`: Computersystems-Programmer
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Institute`: Móricz Zsigmond Technical School
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Degree`: BSc equivalent technical diploma
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Time`: 2001-2003
+
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Location`: Budapest, HU
+
+### -&nbsp;Other:
+
+&nbsp;&nbsp;-&nbsp;`Driving_license_categories`: [AM,B1,B]
 
 ## Soft_skills:
 
