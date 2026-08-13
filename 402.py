@@ -76,11 +76,11 @@ def _convert_inline_markup(text: str) -> str:
 
 
 def md_to_structured_html(text: str) -> str:  # pylint: disable=too-many-branches,too-many-statements
-    """Convert plain Markdown CV into headings + nested HTML lists.
+    """Convert plain Markdown CV into H1/H2 headings and nested YAML-like lists.
 
-    Headings are preserved as real <hN> elements so PDF table-of-contents/bookmarks
-    continue to work, while data under headings is rendered as nested HTML lists
-    styled to look like YAML.
+    H1 and H2 remain real headings to preserve the PDF table-of-contents.
+    Everything below H2 becomes a nested list tree styled to look like YAML,
+    so company names, projects and fields belong to the same structural list.
     """
     heading_re = re.compile(r"^(#{1,6})\s+(.*)")
     list_re = re.compile(r"^(\s*)-\s+(.*)")
@@ -89,38 +89,34 @@ def md_to_structured_html(text: str) -> str:  # pylint: disable=too-many-branche
         '<style>'
         '.yaml-list,.yaml-list ul{list-style:none;margin:0;padding-left:1.5em;}'
         '.yaml-list{padding-left:0;}'
-        '.yaml-list li{margin:0.15em 0;}'
-        '.yaml-list li::before{content:"- ";}'
+        '.yaml-list li{margin:0.15em 0;color:inherit;background:transparent;}'
+        '.yaml-list li::before{content:"- ";color:inherit;background:transparent;}'
+        '.yaml-list code{display:inline;}'
         '</style>'
     ]
-    list_depth = 0
-    open_item = []
-    current_heading_level = 1
+    list_stack = []
 
-    def close_to_depth(target_depth: int):
-        nonlocal list_depth, open_item
-        while list_depth > target_depth:
-            if open_item and open_item[-1]:
+    def close_lists(target_depth=0):
+        nonlocal list_stack
+        while len(list_stack) > target_depth:
+            if list_stack[-1]:
                 html_lines.append('</li>')
-                open_item[-1] = False
             html_lines.append('</ul>')
-            open_item.pop()
-            list_depth -= 1
+            list_stack.pop()
 
-    def ensure_depth(target_depth: int):
-        nonlocal list_depth
-        while list_depth < target_depth:
-            if list_depth == 0:
+    def open_to_depth(target_depth):
+        nonlocal list_stack
+        while len(list_stack) < target_depth:
+            if not list_stack:
                 html_lines.append('<ul class="yaml-list">')
             else:
                 html_lines.append('<ul>')
-            open_item.append(False)
-            list_depth += 1
+            list_stack.append(False)
 
-    def close_item_at_depth(depth: int):
-        if depth >= 1 and len(open_item) >= depth and open_item[depth - 1]:
+    def close_item_at(depth):
+        if depth > 0 and len(list_stack) >= depth and list_stack[depth - 1]:
             html_lines.append('</li>')
-            open_item[depth - 1] = False
+            list_stack[depth - 1] = False
 
     for raw_line in text.splitlines():
         line = raw_line.rstrip()
@@ -132,31 +128,35 @@ def md_to_structured_html(text: str) -> str:  # pylint: disable=too-many-branche
             hashes, content = heading_match.groups()
             level = len(hashes)
             content = re.sub(r'^\s*-\s*', '', content).strip()
-            close_to_depth(0)
-            current_heading_level = level
-            html_lines.append(f'<h{level}>{_convert_inline_markup(content)}</h{level}>')
+
+            if level <= 2:
+                close_lists(0)
+                html_lines.append(f'<h{level}>{_convert_inline_markup(content)}</h{level}>')
+            else:
+                depth = level - 2
+                open_to_depth(depth)
+                close_item_at(depth)
+                html_lines.append(f'<li>{_convert_inline_markup(content)}')
+                list_stack[depth - 1] = True
             continue
 
         list_match = list_re.match(line)
         if list_match:
             leading, content = list_match.groups()
             indent_spaces = len(leading.replace('\t', '    '))
-            explicit_depth = indent_spaces // 2
-            base_depth = max(current_heading_level - 1, 1)
-            depth = max(base_depth, explicit_depth)
-            ensure_depth(depth)
-            close_to_depth(depth)
-            close_item_at_depth(depth)
+            explicit_depth = (indent_spaces // 2) + 1
+            depth = max(1, explicit_depth)
+            open_to_depth(depth)
+            close_item_at(depth)
             html_lines.append(f'<li>{_convert_inline_markup(content.strip())}')
-            open_item[depth - 1] = True
+            list_stack[depth - 1] = True
             continue
 
-        close_to_depth(0)
+        close_lists(0)
         html_lines.append(f'<p>{_convert_inline_markup(line.strip())}</p>')
 
-    close_to_depth(0)
+    close_lists(0)
     return ''.join(html_lines)
-
 
 # ---------------------------------------------------------------------------
 # Argument parsing
