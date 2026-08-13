@@ -56,89 +56,106 @@ from pypdf import PdfWriter  # type: ignore  # pylint: disable=import-error
 
 
 # ---------------------------------------------------------------------------
-# Pure-Markdown → YAML-like conversion
+# Pure-Markdown → structured HTML conversion
 # ---------------------------------------------------------------------------
 
-def _nbsp(pairs: int) -> str:
-    """Return *pairs* repetitions of ``&nbsp;&nbsp;`` (i.e. 2*pairs &nbsp;)."""
-    return "&nbsp;&nbsp;" * pairs
+def _convert_inline_markup(text: str) -> str:
+    """Convert the limited inline markup used by the CV."""
+    text = re.sub(r"&", "&amp;", text)
+    text = re.sub(r"<", "&lt;", text)
+    text = re.sub(r">", "&gt;", text)
+    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    text = re.sub(r"&lt;((?:https?://)[^&]+)&gt;", r'<a href="\1">\1</a>', text)
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
+    text = re.sub(
+        r"&lt;([A-Za-z0-9._%+-]+)@([A-Za-z0-9.-]+\.[A-Za-z]{2,})&gt;",
+        r'<a href="mailto:\1@\2">\1@\2</a>',
+        text,
+    )
+    return text
 
 
-def md_to_yaml_like(text: str) -> str:  # pylint: disable=too-many-branches
-    """Convert a plain Markdown CV into the NBSP-indented YAML-like format.
+def md_to_structured_html(text: str) -> str:  # pylint: disable=too-many-branches,too-many-statements
+    """Convert plain Markdown CV into headings + nested HTML lists.
 
-    Heading level N  →  heading rendered with (N-2) NBSP pairs before ``-``
-                        (level 1 / ``#`` is the document title and gets no
-                        list-item wrapping at all)
-    List items       →  indented with (current_heading_level - 1) NBSP pairs
-
-    The function is idempotent: lines that already contain ``&nbsp;`` are
-    passed through unchanged so legacy hand-crafted files still work.
-
-    Args:
-        text (str): Raw Markdown source.
-
-    Returns:
-        str: Markdown with headings and list-items reformatted to use the
-             project's NBSP-indentation convention.
+    Headings are preserved as real <hN> elements so PDF table-of-contents/bookmarks
+    continue to work, while data under headings is rendered as nested HTML lists
+    styled to look like YAML.
     """
     heading_re = re.compile(r"^(#{1,6})\s+(.*)")
-    list_re = re.compile(r"^\s*-\s+(.*)")
+    list_re = re.compile(r"^(\s*)-\s+(.*)")
 
-    out_lines: list[str] = []
-    # Level of the most-recently-seen Markdown heading (1-based, matches '#' count)
-    current_heading_level: int = 2  # default: top-level section (##)
+    html_lines = [
+        '<style>'
+        '.yaml-list,.yaml-list ul{list-style:none;margin:0;padding-left:1.5em;}'
+        '.yaml-list{padding-left:0;}'
+        '.yaml-list li{margin:0.15em 0;}'
+        '.yaml-list li::before{content:"- ";}'
+        '</style>'
+    ]
+    list_depth = 0
+    open_item = []
+    current_heading_level = 1
+
+    def close_to_depth(target_depth: int):
+        nonlocal list_depth, open_item
+        while list_depth > target_depth:
+            if open_item and open_item[-1]:
+                html_lines.append('</li>')
+                open_item[-1] = False
+            html_lines.append('</ul>')
+            open_item.pop()
+            list_depth -= 1
+
+    def ensure_depth(target_depth: int):
+        nonlocal list_depth
+        while list_depth < target_depth:
+            if list_depth == 0:
+                html_lines.append('<ul class="yaml-list">')
+            else:
+                html_lines.append('<ul>')
+            open_item.append(False)
+            list_depth += 1
+
+    def close_item_at_depth(depth: int):
+        if depth >= 1 and len(open_item) >= depth and open_item[depth - 1]:
+            html_lines.append('</li>')
+            open_item[depth - 1] = False
 
     for raw_line in text.splitlines():
         line = raw_line.rstrip()
-
-        # Legacy lines (already NBSP-formatted) pass through unchanged
-        if "&nbsp;" in line:
-            out_lines.append(line)
-            continue
-
-        # Blank lines pass through
         if not line.strip():
-            out_lines.append(line)
             continue
 
         heading_match = heading_re.match(line)
         if heading_match:
-            hashes = heading_match.group(1)
-            content = heading_match.group(2)
-            level = len(hashes)  # 1 … 6
+            hashes, content = heading_match.groups()
+            level = len(hashes)
+            content = re.sub(r'^\s*-\s*', '', content).strip()
+            close_to_depth(0)
             current_heading_level = level
-
-            if level == 1:
-                # Document title: keep verbatim
-                out_lines.append(f"# {content}")
-            else:
-                # Number of NBSP pairs in front of the "-" marker:
-                #   ##   (level 2)  → 0 pairs
-                #   ###  (level 3)  → 1 pair
-                #   #### (level 4)  → 2 pairs
-                #   …
-                nbsp_pairs = level - 2
-                out_lines.append(
-                    f"{'#' * level} {_nbsp(nbsp_pairs)}-&nbsp;{content}"
-                )
+            html_lines.append(f'<h{level}>{_convert_inline_markup(content)}</h{level}>')
             continue
 
         list_match = list_re.match(line)
         if list_match:
-            content = list_match.group(1)
-            # List items sit one indent level below their parent heading:
-            #   under ##   (level 2)  → 1 pair  (2 &nbsp;)
-            #   under ###  (level 3)  → 2 pairs (4 &nbsp;)
-            #   under #### (level 4)  → 3 pairs (6 &nbsp;)
-            nbsp_pairs = current_heading_level - 1
-            out_lines.append(f"{_nbsp(nbsp_pairs)}-&nbsp;{content}")
+            leading, content = list_match.groups()
+            indent_spaces = len(leading.replace('\t', '    '))
+            explicit_depth = indent_spaces // 2
+            base_depth = max(current_heading_level - 1, 1)
+            depth = max(base_depth, explicit_depth)
+            ensure_depth(depth)
+            close_to_depth(depth)
+            close_item_at_depth(depth)
+            html_lines.append(f'<li>{_convert_inline_markup(content.strip())}')
+            open_item[depth - 1] = True
             continue
 
-        # Everything else (paragraphs, code fences, raw HTML …) passes through
-        out_lines.append(line)
+        close_to_depth(0)
+        html_lines.append(f'<p>{_convert_inline_markup(line.strip())}</p>')
 
-    return "\n".join(out_lines)
+    close_to_depth(0)
+    return ''.join(html_lines)
 
 
 # ---------------------------------------------------------------------------
@@ -366,14 +383,12 @@ class SimpleServer(BaseHTTPRequestHandler):
             # Convert pure Markdown → NBSP-indented YAML-like format,
             # then substitute the email sub-address, then render to HTML.
             raw_text = f.read() + "</body>"
-            yaml_like_text = md_to_yaml_like(raw_text)
-            content = markdown.markdown(
-                re.sub(
-                    r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
-                    rf"[\2\3](mailto:\2+{subaddress}\3)",
-                    yaml_like_text,
-                )
+            subaddressed_text = re.sub(
+                r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
+                rf"<\2+{subaddress}\3>",
+                raw_text,
             )
+            content = md_to_structured_html(subaddressed_text)
         if self.path.split("?")[0] == f"/{os.path.basename(pdf_file)}":
             generatePDF(content, pdf_file)
             self.send_response(200)
