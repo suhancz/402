@@ -94,6 +94,14 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;-&nbsp;`GitHub`: <https://github.com/suhancz>
 
+## Relevant_expertise:
+
+### &nbsp;&nbsp;Comfortable_with:
+&nbsp;&nbsp;&nbsp;&nbsp;[Ansible, cloud-init, Docker, GitHub_Actions, GitLab_CI, Jenkins, Linux, Prometheus, PowerShell, Python, Solaris, TeamCity, Terraform, Windows_server]
+
+### &nbsp;&nbsp;Also_experienced_with:
+&nbsp;&nbsp;&nbsp;&nbsp;[AIX, AWS, Azure, Bamboo, BlueCoat, Chef, Cisco_ASA, Cisco_CSS, F5_BigIP, HP-UX, InSpec, k3s, k8s, IBM_cloud, Juniper, Microsoft_BizTalk, Microsoft_SQL_server, Octopus_Deploy, OpenStack, SiteMinder]
+
 ## Relevant_professional_experience:
 
 ### &nbsp;&nbsp;-&nbsp;Thermo Fisher Scientific:
@@ -111,8 +119,6 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Improved platform observability and alert accuracy by switching to the Prometheus/Thanos/Loki/Grafana stack.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Secured developer workflows by deploying K8s-based automated code-signing Linux+Windows clusters.
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Technologies_used`: [Anaconda, Ansible, CentOS, CVAT, Docker, GitLab, IBM_RTC, Jenkins, K8s, Keycloak, MongoDB, OpenStack, PostgreSQL, Prometheus, Python, Tanzu, Terraform, Ubuntu, vSphere, Windows_server]
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`What_I_learnt`:
 
@@ -133,8 +139,6 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Accelerated global scale-out by scripting and deploying virtual datacenters across multiple cloud providers.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Standardized the global infrastructure stack by migrating the entire codebase to Terraform 0.13.
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Technologies_used`: [AWS, Azure, Bitbucket, Equinix_cloud, Github, IBM_Cloud, IPSec, Jenkins, K3s, K8s, MongoDB, OpenTelekomCloud, PostgreSQL, Prometheus, Puppet, Python, RabbitMQ, RDS, Squid, Terraform, Ubuntu, WireGuard]
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`What_I_learnt`:
 
@@ -157,8 +161,6 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Reduced security risks by building a product-independent DDoS protection solution that automatically blocked suspicious traffic.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Migrated legacy products (Connect, Parentlink) from self-hosted infrastructure to AWS to improve reliability.
-
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Technologies_used`: [Amazon_Linux, Ansible, Apache, AWS, Bamboo, Bash, Bitbucket, BTRFS, CentOS, Chef, Cisco_ASA, CloudWatch, EC2, F5_BigIP, FreePBX, IAM, IIS, InSpec, JaCL, Jenkins, memcached, Microsoft_SQL_Server, MongoDB, MySQL, Nagios, NetApp, NewRelic, NginX, PHP, PostgreSQL, PowerShell, Python, RDS, S3, Selenium, SNS, Solaris, SonarQube, TeamCity, TCL, TestRail, Tomcat, Ubuntu, VictorOps, vSphere, WebScreen, Windows_Server, WSGI, ZFS]
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`What_I_learnt`:
 
@@ -186,8 +188,6 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Generated an "outage pack" tool which collects all required info on a system in case of issues to ease root cause analysis.
 
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Technologies_used`: [AFS, Apache, BlueCoat, CA_AutoSys, CA_SiteMinder, Cisco_CSS, F5_BigIP, iMimic, JaCL, Java, Juniper, Kerberos, KSH, LDAP, LightStreamer, OpTier_Corefirst, OSQA, Perl, RHEL, RPM, ServletExec, Solaris, Sybase, TCL, Tomcat, TWiki, Vignette]
-
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`What_I_learnt`:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Code_of_conduct`: "Always keep your sense of humor" was the most agreeable requirement I ever signed
@@ -196,11 +196,13 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 ## Education:
 
--&nbsp;`Certificates`: [RHCS in Ansible Automation, RHCE, RHCSA]
+-&nbsp;`Certificates`: [RHCS in Ansible Automation, RHCE, RHCSA](https://rhtapps.redhat.com/verify?certId=140-113-325)
 
 -&nbsp;`Gábor Dénes Főiskola`: Information Technology (DNF - chose to work instead)
 
 -&nbsp;`Móricz Zsigmond Technical School`: Computersystems-Programmer (BSc equivalent diploma)
+
+-&nbsp;`Driving_license`: [AM,B1,B,T,K]
 
 ## Hobbies_and_interests:
 
