@@ -19,34 +19,9 @@ from urllib.parse import parse_qs, urlparse
 
 import dns.reversename  # type: ignore  # pylint: disable=import-error
 import markdown  # pylint: disable=import-error
-from markdown.treeprocessors import Treeprocessor  # pylint: disable=import-error
-from markdown.extensions import Extension  # pylint: disable=import-error
+from bs4 import BeautifulSoup  # type: ignore  # pylint: disable=import-error
 import pdfkit  # type: ignore  # pylint: disable=import-error
 from pypdf import PdfWriter  # type: ignore  # pylint: disable=import-error
-
-
-class NewTabLinksTreeprocessor(Treeprocessor):
-    """_summary_
-    A markdown Treeprocessor that adds target="_blank" and
-    rel="noopener noreferrer" to every <a> element in the parsed tree,
-    covering [text](url), <http://autolink>, and mailto: links alike.
-    """
-
-    def run(self, root):
-        for element in root.iter("a"):
-            element.set("target", "_blank")
-            element.set("rel", "noopener noreferrer")
-
-
-class NewTabLinksExtension(Extension):
-    """_summary_
-    Markdown extension that makes all links open in new tabs.
-    """
-
-    def extendMarkdown(self, md):
-        md.treeprocessors.register(
-            NewTabLinksTreeprocessor(md), "new_tab_links", 1
-        )
 
 
 class EnvDefault(argparse.Action):  # pylint: disable=too-few-public-methods
@@ -170,6 +145,24 @@ def parseAcceptLanguage(acceptLanguage):
     return sorted(locale_q_pairs, key=lambda x: x[1], reverse=True)
 
 
+def addNewTabToLinks(html):
+    """_summary_
+    Add target="_blank" and rel="noopener noreferrer" to all <a> tags
+    so that links open in new tabs.
+
+    Args:
+        html (string): HTML content
+
+    Returns:
+        string: HTML content with all links set to open in new tabs
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    for link in soup.find_all("a"):
+        link["target"] = "_blank"
+        link["rel"] = "noopener noreferrer"
+    return str(soup)
+
+
 def generatePDF(content, pdf_file):
     """_summary_
     Args:
@@ -260,13 +253,14 @@ class SimpleServer(BaseHTTPRequestHandler):
         pdf_file = filename.replace(".md", f".{subaddress}.pdf")
         with open(filename, encoding="utf-8") as f:
             text = f.read() + "</body>"
-            content = markdown.markdown(
-                re.sub(
-                    r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
-                    rf"[\2\3](mailto:\2+{subaddress}\3)",
-                    text,
-                ),
-                extensions=[NewTabLinksExtension()],
+            content = addNewTabToLinks(
+                markdown.markdown(
+                    re.sub(
+                        r"(<)([A-Za-z0-9._%+-]+)(@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(>)",
+                        rf"[\2\3](mailto:\2+{subaddress}\3)",
+                        text,
+                    )
+                )
             )
         if self.path.split("?")[0] == f"/{os.path.basename(pdf_file)}":
             generatePDF(content, pdf_file)
@@ -302,3 +296,4 @@ except KeyboardInterrupt:
     pass
 webServer.server_close()
 print("Server stopped.")
+

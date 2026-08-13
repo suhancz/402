@@ -116,9 +116,9 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Implemented LDAP-based authorization with authentication using GitLab SSH keys on Linux systems without joining them to the corporate Active Directory
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Improved platform observability and alert accuracy by switching to the Prometheus/Thanos/Loki/Grafana stack.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Improved platform observability and alert accuracy by switching to the Prometheus/Thanos/Loki/Grafana stack
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Secured developer workflows by deploying K8s-based automated code-signing Linux+Windows clusters.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Secured developer workflows by deploying K8s-based automated code-signing Linux+Windows clusters
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`What_I_learnt`:
 
@@ -136,9 +136,9 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Main_achievements`:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Accelerated global scale-out by scripting and deploying virtual datacenters across multiple cloud providers.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Accelerated global scale-out by scripting and deploying virtual datacenters across multiple cloud providers
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Standardized the global infrastructure stack by migrating the entire codebase to Terraform 0.13.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Standardized the global infrastructure stack by migrating the entire codebase to Terraform 0.13
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`What_I_learnt`:
 
@@ -156,11 +156,11 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Main_achievements`:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Maintained 100% uptime during a full team replacement by reverse-engineering and documenting the entire SaaS environment, and finding the right talent for the job.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Maintained 100% uptime during a full team replacement by reverse-engineering and documenting the entire SaaS environment, and finding the right talent for the job
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Reduced security risks by building a product-independent DDoS protection solution that automatically blocked suspicious traffic.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Reduced security risks by building a product-independent DDoS protection solution that automatically blocked suspicious traffic
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Migrated legacy products (Connect, Parentlink) from self-hosted infrastructure to AWS to improve reliability.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Migrated legacy products (Connect, Parentlink) from self-hosted infrastructure to AWS to improve reliability
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`What_I_learnt`:
 
@@ -180,13 +180,13 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`Main_achievements`:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Maintained several packages of the internally developed Linux distribution.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Maintained several packages of the internally developed Linux distribution
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Ensured stability for high-traffic events by preparing web plants for major IPOs (Facebook, GM, NOEnergy).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Ensured stability for high-traffic events by preparing web plants for major IPOs (Facebook, GM, NOEnergy)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Contributed to the forensics and recovery effort during the 2009 "Operation Aurora" cyberattack.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Contributed to the forensics and recovery effort during the 2009 "Operation Aurora" cyberattack
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Generated an "outage pack" tool which collects all required info on a system in case of issues to ease root cause analysis.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Generated an "outage pack" tool which collects all required info on a system in case of issues to ease root cause analysis
 
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;`What_I_learnt`:
 
@@ -196,7 +196,21 @@ I formatted the below Markdown input to be YAML-parsable, because why not (linte
 
 ## Education:
 
--&nbsp;`Certificates`: [RHCS in Ansible Automation, RHCE, RHCSA](https://rhtapps.redhat.com/verify?certId=140-113-325)
+### -&nbsp;`Languages`:
+
+&nbsp;&nbsp;-&nbsp;`Czech`: intermediate
+
+&nbsp;&nbsp;-&nbsp;`English`: advanced
+
+&nbsp;&nbsp;-&nbsp;`German`: beginner
+
+&nbsp;&nbsp;-&nbsp;`Hungarian`: native
+
+&nbsp;&nbsp;-&nbsp;`Italian`: beginner
+
+&nbsp;&nbsp;-&nbsp;`Spanish`: beginner
+
+-&nbsp;`Certificates`: [[RHCS in Ansible Automation, RHCE, RHCSA](https://rhtapps.redhat.com/verify?certId=140-113-325)]
 
 -&nbsp;`Gábor Dénes Főiskola`: Information Technology (DNF - chose to work instead)
 
