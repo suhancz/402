@@ -1,5 +1,5 @@
 beautifulsoup4
-dnspython==2.6.1
+dnspython==2.9.0
 Markdown==3.8.1
 pdfkit==1.0.0
 pypdf==6.21.2
