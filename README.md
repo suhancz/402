@@ -1,7 +1,7 @@
 402 - Payment required
 ======================
 
-[![Super-Linter](https://github.com/suhancz/402/actions/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter) [![Dependabot Updates](https://github.com/suhancz/402/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/suhancz/402/actions/workflows/dependabot/dependabot-updates)
+[![Super-Linter](https://github.com/suhancz/402/actions/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter) [![Dependabot Updates](https://github.com/suhancz/402/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/suhancz/402/actions/workflows/dependabot/dependabot-updates) [![Dependency Graph](https://github.com/suhancz/402/actions/workflows/dependabot/update-graph/badge.svg)](https://github.com/suhancz/402/actions/workflows/dependabot/update-graph)
 
 Generate HTML CV (with an HTTP response code of `402 - Payment required` ;)) from Markdown and add client IP as a [subaddress](https://en.wikipedia.org/wiki/Email_address#Sub-addressing) to my email address so I now from where they really contact me without having to check my mailserver logs.
 
