@@ -25,14 +25,14 @@ jobs:
       security-events: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 # zizmor: ignore[unpinned-uses] -- intentionally track v4
         with:
           persist-credentials: false
 
       - name: Run DevSkim scanner
-        uses: microsoft/DevSkim-Action@v1
+        uses: microsoft/DevSkim-Action@v1 # zizmor: ignore[unpinned-uses] -- intentionally track v1
 
       - name: Upload DevSkim scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v3 # zizmor: ignore[unpinned-uses] -- intentionally track v3
         with:
           sarif_file: devskim-results.sarif
