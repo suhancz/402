@@ -57,7 +57,7 @@ jobs:
       # Run Linter against code base #
       ################################
       - name: Lint Code Base
-        uses: super-linter/super-linter@latest
+        uses: super-linter/super-linter@latest # zizmor: ignore[unpinned-uses] -- intentionally track latest
         env:
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_TRIVY: false
