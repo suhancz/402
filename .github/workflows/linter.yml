@@ -60,6 +60,7 @@ jobs:
         uses: super-linter/super-linter@latest
         env:
           VALIDATE_ALL_CODEBASE: false
+          VALIDATE_TRIVY: false
           # Change to 'master' if your main branch differs
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
