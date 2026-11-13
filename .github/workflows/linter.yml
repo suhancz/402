@@ -47,11 +47,12 @@ jobs:
       # Checkout the code base #
       ##########################
       - name: Checkout Code
-        uses: actions/checkout@main
+        uses: actions/checkout@main # zizmor: ignore[unpinned-uses] -- intentionally track main
         with:
           # Full git history is needed to get a proper
           # list of changed files within `super-linter`
           fetch-depth: 0
+          persist-credentials: false
 
       ################################
       # Run Linter against code base #
